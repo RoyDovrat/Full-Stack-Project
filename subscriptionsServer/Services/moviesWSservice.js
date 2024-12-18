@@ -8,7 +8,7 @@ const getAllMoviesData = async () => {
             name: movie.name,
             genres: movie.genres,
             image: movie.image?.medium,
-            premiered: movie.premiered
+            premiered: movie.premiered 
         }
     })
 }
