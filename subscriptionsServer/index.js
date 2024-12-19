@@ -3,8 +3,9 @@ const cors = require('cors');
 const connectDB = require('./Configs/db');
 const initializeData = require('./Utils/initializeData');
 
-//const departmentsRouter = require('./controllers/departmentController');
-
+const membersRouter = require('./Controllers/membersController');
+const moviesRouter = require('./Controllers/moviesController');
+const subscriptionsRouter = require('./Controllers/SubscriptionsController');
 
 const app = express();
 const PORT = 3000;
@@ -19,7 +20,10 @@ connectDB().then(async () =>{
 app.use(cors());
 app.use('/', express.json());
 
-//app.use('/departments', departmentsRouter);
+app.use('/members', membersRouter);
+app.use('/movies', moviesRouter);
+app.use('/subscriptions', subscriptionsRouter);
+
 
 app.listen(PORT, () => {
   console.log(`app is listening at http://localhost:${PORT}`);
