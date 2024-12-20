@@ -1,0 +1,11 @@
+{
+    "users": [
+        {
+            "id": "67655cd349f91c01cb25eb16",
+            "firstName": "Admin",
+            "lastName": "User",
+            "createdDate": "2024-12-19",
+            "sessionTimeOut": 60
+        }
+    ]
+}
