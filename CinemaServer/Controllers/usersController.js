@@ -1,11 +1,12 @@
 const express = require('express');
 const usersService = require('../Services/usersService');
+const verifyToken = require('../Middlewares/authMiddleware');
 
 const router = express.Router();
 
 // Entry point: http://localhost:3000/users
 
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
   try {
     const users = await usersService.getAllUsers();
     res.json(users);
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', verifyToken, async (req, res) => {
   try {
     const { id } = req.params;
     const user = await usersService.getUserById(id);
@@ -24,7 +25,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
   try {
     const obj = req.body;
     const result = await usersService.addUser(obj);
@@ -34,7 +35,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', verifyToken, async (req, res) => {
   try {
     const { id } = req.params;
     const obj = req.body;
@@ -45,7 +46,7 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', verifyToken, async (req, res) => {
   try {
     const { id } = req.params;
     const result = await usersService.deleteUser(id);
