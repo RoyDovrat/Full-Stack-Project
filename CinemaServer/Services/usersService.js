@@ -1,12 +1,13 @@
 const usersDBrepository = require('../Repositories/usersDBrepository');
 const usersFileRepository = require('../Repositories/usersFileRepository')
 const permissionsRepository = require('../Repositories/permissionsRepository')
+const ADMIN_USER_NAME = "admin";
 
 const getAllUsers = async () => {
     const usersDB = await usersDBrepository.getAllUsers();
     const usersFile = await usersFileRepository.getAllUsers();
     const premissions = await permissionsRepository.getAllPermissions();
-    
+
     const users = usersDB.map((dbUser) => {
 
         const fileUser = usersFile.users.find((user) => user.id.toString() === dbUser._id.toString());
@@ -32,10 +33,10 @@ const getUserById = async (id) => {
     const dbUser = await usersDBrepository.getUserById(id);
 
     const fileUsers = await usersFileRepository.getAllUsers();
-    const fileUser= fileUsers.users.find((user)=> user.id === id);
+    const fileUser = fileUsers.users.find((user) => user.id === id);
 
     const premissions = await permissionsRepository.getAllPermissions();
-    const userPermissions = premissions.premissions.find((prem) => prem.id ===id);
+    const userPermissions = premissions.premissions.find((prem) => prem.id === id);
 
     return {
         dbUser,
@@ -45,6 +46,13 @@ const getUserById = async (id) => {
 };
 
 const addUser = async (obj) => {
+    const users = await usersDBrepository.getAllUsers();
+    const isUserNameExists = users.some(user => user.userName === obj.userName);
+
+    if (isUserNameExists) {
+        throw new Error("Username already exists.");
+    }
+
     const dbUser = await usersDBrepository.addUser({ userName: obj.userName, password: user.password })
 
     await usersFileRepository.addUser({
@@ -68,6 +76,11 @@ const updateUser = (id, obj) => {
 };
 
 const deleteUser = async (id) => {
+
+    if (dbUser.userName === ADMIN_USER_NAME) {
+        throw new Error("Cannot delete the admin user!");
+    }
+
     await usersDBrepository.deleteUser(id);
 
     const usersFile = await usersFileRepository.getAllUsers();

@@ -10,7 +10,7 @@ const verifyToken = (req, res, next) => {
   
     jwt.verify(token, SECRET_KEY, (err, data) => {
       if (err) {
-        return res.status(500).json('Failed to authenticate token');
+        return res.status(403).json({ message: 'Invalid token', error: err.message });
       }
   
       req.user = data; // Attach decoded token data to request object

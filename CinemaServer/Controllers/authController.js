@@ -13,7 +13,7 @@ router.post('/login', async (req, res) => {
 
         const allUsers = await userService.getAllUsers();
 
-        const user = await allUsers.findOne({ userName });
+        const user = allUsers.find((user) => user.userName.toLowerCase() === userName.toLowerCase());
 
         //check validation
         if (!user) return res.status(401).json({ message: "User not found" });
