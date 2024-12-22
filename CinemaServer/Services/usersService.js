@@ -11,7 +11,7 @@ const getAllUsers = async () => {
     const users = usersDB.map((dbUser) => {
 
         const fileUser = usersFile.users.find((user) => user.id.toString() === dbUser._id.toString());
-        const userPermissions = premissions.premissions.find((premissions) => premissions.id.toString() === dbUser._id.toString());
+        const userPermissions = premissions.premissions.find((perm) => perm.id.toString() === dbUser._id.toString());
 
         return {
             _id: dbUser._id,

@@ -32,7 +32,8 @@ const initializeAdminUser = async () => {
         "Delete Subscriptions",
         "View Movies",
         "Create Movies",
-        "Delete Movies"
+        "Delete Movies",
+        "Admin Permissions" //permission only for the admin
       ]
     });
 

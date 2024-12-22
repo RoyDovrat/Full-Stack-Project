@@ -12,6 +12,7 @@ function App() {
         <Route path='/create-account' element={<CreateAccount />} />
         <Route path='/main' element={<MainPage />} />
 
+
       </Routes>
 
     </>

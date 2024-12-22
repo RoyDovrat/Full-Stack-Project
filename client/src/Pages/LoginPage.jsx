@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -21,7 +22,10 @@ function LoginPage() {
 
             if (resp.status === 200) {
                 const { token } = resp.data;
+                const decoded = jwt_decode(token);
                 sessionStorage.setItem('token', token);
+                sessionStorage.setItem('fullName', decoded.fullName);
+                sessionStorage.setItem('isAdmin', decoded.isAdmin);
                 navigate('/main');
             }
             
