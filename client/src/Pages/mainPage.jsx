@@ -1,19 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const USER_FULL_NAME = sessionStorage.getItem('fullName');
-const IS_ADMIN = sessionStorage.getItem('isAdmin');
 
 function MainPage() {
   const navigate = useNavigate();
 
+  const [userFullName, setUserFullName] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    setUserFullName(sessionStorage.getItem('fullName') || 'Guest');
+    setIsAdmin(sessionStorage.getItem('isAdmin') === 'true');
+  }, []);
+
+  const handleLogout = () => {
+    sessionStorage.clear(); 
+    navigate('/');
+  };
+
   return (
     <>
-     <h3>Welcome, {USER_FULL_NAME}</h3>
-     
+      <h3>Welcome, {userFullName}</h3>
 
+      <h1>Movies Subscriptions Web Site</h1>
+      <button onClick={() => navigate('/movies')}>Movies</button>
+      <button onClick={() => navigate('/subscriptions')}>Subscriptions</button>
+      {isAdmin && (
+        <button onClick={() => navigate('/users-management')}>Users Management</button>
+      )}
+      <button onClick={handleLogout}>Log Out</button>
     </>
-  )
+  );
 }
 
-export default MainPage
+export default MainPage;

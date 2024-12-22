@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
+
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -22,16 +23,17 @@ function LoginPage() {
 
             if (resp.status === 200) {
                 const { token } = resp.data;
-                const decoded = jwt_decode(token);
+                const decoded = jwtDecode(token);
                 sessionStorage.setItem('token', token);
                 sessionStorage.setItem('fullName', decoded.fullName);
                 sessionStorage.setItem('isAdmin', decoded.isAdmin);
                 navigate('/main');
             }
-            
+
         } catch (err) {
+            console.error('Error during login:', err.response?.data || err.message);
             if (err.response && err.response.status === 401) {
-                setError('Invalid username or password.');
+                setError(err.response.data.message || 'Invalid username or password.');
             } else {
                 setError('An error occurred. Please try again.');
             }
