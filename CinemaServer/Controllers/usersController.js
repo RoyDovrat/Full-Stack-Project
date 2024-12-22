@@ -25,6 +25,26 @@ router.get('/:id', verifyToken, async (req, res) => {
   }
 });
 
+//create account
+router.post('/createAccount', async (req, res) => {
+  try {
+    const { userName, password } = req.body;
+    if (!userName || !password) {
+      return res.status(400).json({ message: 'Please provide both userName and password.' });
+    }
+
+    const user = await usersService.getUserByUserName(userName);
+    if (!user) {
+      return res.status(404).json({ message: 'User does not exist' });
+    }
+
+    await usersService.updateUser(user._id, { password });
+    res.status(201).json({ message: 'Account created successfully' });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
+
 router.post('/', verifyToken, async (req, res) => {
   try {
     const obj = req.body;

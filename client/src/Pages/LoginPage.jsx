@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -7,47 +8,45 @@ function LoginPage() {
     const [userName, setUseName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
-        if (!userName || !password) { 
-            setError('Please enter both username and email.');
+        if (!userName || !password) {
+            setError('Please enter both username and password.');
             return;
         }
 
         try {
-            const resp = await fetch(URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userName, password }),
-            });
+            const resp = await axios.post(URL, { userName, password });
 
-            if (resp.ok) {
-                const { token } = await resp.json();
+            if (resp.status === 200) {
+                const { token } = resp.data;
                 sessionStorage.setItem('token', token);
-                //navigate('/main');
-            } else {
-                const { message } = await resp.json();
-                setError(message);
+                navigate('/main');
             }
-        } catch (err) { 
-            console.error(err);
-            setError('An error occurred. Please try again.');
+            
+        } catch (err) {
+            if (err.response && err.response.status === 401) {
+                setError('Invalid username or password.');
+            } else {
+                setError('An error occurred. Please try again.');
+            }
         }
     };
 
     return (
         <>
             <h1>Movies Subscriptions Web Site</h1>
-
             <h3>Log in Page</h3>
-            User name: <input type="text" placeholder="User Name" onChange={(e) => setUseName(e.target.value)} /><br /><br />
-            Password: <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
 
+            <label>User name:</label>
+            <input type="text" placeholder="User Name" onChange={(e) => setUseName(e.target.value)} /><br /><br />
+            <label>Password:</label>
+            <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
             <button onClick={handleLogin}>Login</button> <br />
-            New User?: <Link to='/create-account'>Create Account</Link> <br />
 
-            {error && <p>{error}</p>}
+            New User?: <Link to='/create-account'>Create Account</Link> <br />
+            {error && <p style={{ color: 'red' }}>{error}</p>}
         </>
     );
 }

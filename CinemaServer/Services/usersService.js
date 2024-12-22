@@ -45,9 +45,16 @@ const getUserById = async (id) => {
     }
 };
 
+const getUserByUserName = async (userName) =>{
+    const users = await usersDBrepository.getAllUsers();
+    const user = users.find(user => user.userName.toLowerCase() === userName.toLowerCase());
+    return user;
+    
+}
+
 const addUser = async (obj) => {
     const users = await usersDBrepository.getAllUsers();
-    const isUserNameExists = users.some(user => user.userName === obj.userName);
+    const isUserNameExists = users.some(user => user.userName.toLowerCase() === obj.userName.toLowerCase());
 
     if (isUserNameExists) {
         throw new Error("Username already exists.");
@@ -100,6 +107,7 @@ const deleteUser = async (id) => {
 module.exports = {
     getAllUsers,
     getUserById,
+    getUserByUserName,
     addUser,
     updateUser,
     deleteUser,
