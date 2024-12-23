@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 function MainPage() {
   const [userFullName, setUserFullName] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,9 +25,10 @@ function MainPage() {
       <button onClick={() => navigate('/movies')}>Movies</button>
       <button onClick={() => navigate('/subscriptions')}>Subscriptions</button>
       {isAdmin && (
-        <button onClick={() => navigate('/main/users-management')}>Users Management</button> 
+        <button onClick={() => navigate('/main/users-management')}>Users Management</button>
       )}
-      <button onClick={handleLogout}>Log Out</button>
+      <button onClick={handleLogout}>Log Out</button> <br /> <br />
+      <Outlet />
     </>
   );
 }

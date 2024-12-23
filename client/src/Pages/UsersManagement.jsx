@@ -1,32 +1,26 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
+import '../Style.css'
 
 function UsersManagement() {
-  const [userFullName, setUserFullName] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUserFullName(sessionStorage.getItem('fullName') || 'Guest');
     setIsAdmin(sessionStorage.getItem('isAdmin') === 'true');
   }, []);
 
-  const handleLogout = () => {
-    sessionStorage.clear();
-    navigate('/');
-  };
 
   return (
-    <>
-      <h3>Welcome, {userFullName}</h3>
 
-      <h3>Manage Users</h3>
-      {isAdmin && (<button onClick={() => navigate('/users-management/all-users')}>All Users</button>)}
-      {isAdmin && (<button onClick={() => navigate('/users-management/add-user')}>Add User</button>)}
-      <button onClick={() => navigate('/main')}>Main</button>
-      <button onClick={handleLogout}>Log Out</button>
-    </>
+    <div className='usersManagement-container'>
+      <h3>Users</h3>
+      {isAdmin && (<button onClick={() => navigate('/main/users-management/all-users')}>All Users</button>)}
+      {isAdmin && (<button onClick={() => navigate('/main/users-management/add-user')}>Add User</button>)} <br /><br />
+      <Outlet />
+    </div>
+
   )
 }
 

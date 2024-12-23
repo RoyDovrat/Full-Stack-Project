@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 
-
 const URL = 'http://localhost:3000/auth/login';
 
 function LoginPage() {
@@ -44,8 +43,8 @@ function LoginPage() {
         <>
             <h1>Movies Subscriptions Web Site</h1>
             <h3>Log in Page</h3>
-
             <label>User name:</label>
+            {/*change to email and update the admin to email in the backend*/ }
             <input type="text" placeholder="User Name" onChange={(e) => setUseName(e.target.value)} /><br /><br />
             <label>Password:</label>
             <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
