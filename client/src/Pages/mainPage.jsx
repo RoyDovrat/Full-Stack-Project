@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
-  const navigate = useNavigate();
-
   const [userFullName, setUserFullName] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
+  
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUserFullName(sessionStorage.getItem('fullName') || 'Guest');
@@ -13,7 +13,7 @@ function MainPage() {
   }, []);
 
   const handleLogout = () => {
-    sessionStorage.clear(); 
+    sessionStorage.clear();
     navigate('/');
   };
 
@@ -25,7 +25,7 @@ function MainPage() {
       <button onClick={() => navigate('/movies')}>Movies</button>
       <button onClick={() => navigate('/subscriptions')}>Subscriptions</button>
       {isAdmin && (
-        <button onClick={() => navigate('/users-management')}>Users Management</button>
+        <button onClick={() => navigate('/main/users-management')}>Users Management</button> 
       )}
       <button onClick={handleLogout}>Log Out</button>
     </>

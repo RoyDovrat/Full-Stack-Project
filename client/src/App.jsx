@@ -15,15 +15,15 @@ function App() {
       <Routes>
         <Route path='/' element={<LoginPage />} />
         <Route path='/create-account' element={<CreateAccount />} />
-        <Route path='/main' element={<MainPage />} />
         <Route path='/movies' element={<Movies />} />
         <Route path='/subscriptions' element={<Subscriptions />} />
 
-        <Route path='/users-management' element={<UsersManagement />}>
-          <Route path='all-users' element={<Users />} />
-          <Route path='add-user' element={<AddUser />} />
+        <Route path='/main' element={<MainPage />}>
+          <Route path='users-management' element={<UsersManagement />}>
+            <Route path='all-users' element={<Users />} />
+            <Route path='add-user' element={<AddUser />} />
+          </Route>
         </Route>
-
 
       </Routes>
 
