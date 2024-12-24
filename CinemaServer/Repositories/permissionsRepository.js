@@ -13,4 +13,9 @@ const addPremission = async (Obj) => {
     return 'Added Successfully';
 };
 
-module.exports = { getAllPermissions, addPremission };
+const updatePermissions = async (data) => {
+    await jf.writeFile(FILE, data);
+    return 'Updated Successfully';
+}
+
+module.exports = { getAllPermissions, addPremission, updatePermissions };

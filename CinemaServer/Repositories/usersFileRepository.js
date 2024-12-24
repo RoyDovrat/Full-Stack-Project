@@ -13,4 +13,9 @@ const addUser = async (Obj) => {
     return 'Added Successfully';
 };
 
-module.exports = { getAllUsers, addUser };
+const updateUsers = async (data) => {
+  await jf.writeFile(FILE, data);
+  return 'Updated Successfully';
+} 
+
+module.exports = { getAllUsers, addUser, updateUsers };

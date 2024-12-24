@@ -55,8 +55,9 @@ router.post('/', verifyToken, async (req, res) => {
   }
 });
 
-router.patch('/:id', verifyToken, async (req, res) => {
+router.put('/:id', verifyToken, async (req, res) => {
   try {
+    console.log('in controller')
     const { id } = req.params;
     const obj = req.body;
     const result = await usersService.updateUser(id, obj);
@@ -72,7 +73,7 @@ router.delete('/:id', verifyToken, async (req, res) => {
     const result = await usersService.deleteUser(id);
     res.json(result);
   } catch (error) {
-    res.json(error);
+    res.json({ message: error.message });
   }
 });
 

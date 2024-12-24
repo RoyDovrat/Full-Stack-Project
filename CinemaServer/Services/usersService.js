@@ -45,11 +45,11 @@ const getUserById = async (id) => {
     }
 };
 
-const getUserByUserName = async (userName) =>{
+const getUserByUserName = async (userName) => {
     const users = await usersDBrepository.getAllUsers();
     const user = users.find(user => user.userName.toLowerCase() === userName.toLowerCase());
     return user;
-    
+
 }
 
 const addUser = async (obj) => {
@@ -78,11 +78,65 @@ const addUser = async (obj) => {
     return dbUser;
 };
 
-const updateUser = (id, obj) => {
-    return usersDBrepository.updateUser(id, obj);
+const updateFileUsers = async (id, obj) => {
+
+    const updatedFileUser = {
+        id,
+        firstName: obj.firstName,
+        lastName: obj.lastName,
+        createdDate: user.createdDate,
+        sessionTimeOut: obj.sessionTimeOut
+    }
+    const fileUsers = await usersFileRepository.getAllUsers();
+    const userFileIndex = fileUsers.users.findIndex((user) => user.id === id);
+    if (userFileIndex === -1) {
+        await usersFileRepository.addUser(updatedFileUser);
+    }
+
+    else {
+        fileUsers.users[userFileIndex] = { updatedFileUser };
+        await usersFileRepository.updateUsers(fileUsers)
+    }
+}
+
+const updateFilePermissions = async (id, obj) => {
+
+    const updatedFilePermissions = {
+        id,
+        permissions: obj.permissions
+    }
+    const permissionsUsers = await permissionsRepository.getAllPermissions();
+    const permissionsFileIndex = permissionsUsers.permissions.findIndex((perm) => perm.id === id);
+    if (permissionsFileIndex === -1) {
+        await permissionsRepository.addPremission(updatedFilePermissions);
+    }
+
+    else {
+        permissionsUsers.permissions[permissionsFileIndex] = { updatedFilePermissions };
+        await permissionsRepository.updatePermissions(permissionsUsers)
+    }
+}
+
+
+
+
+const updateUser = async (id, obj) => {
+    const user = getUserById(id);
+
+    const dbUser = await usersDBrepository.updateUser(id, { userName: obj.userName, password: user.password });
+
+    await updateFileUsers(id, obj);
+
+
+    await updateFilePermissions(id, obj);
+
+    return  'User updated successfully!'
 };
 
+
 const deleteUser = async (id) => {
+
+    const dbUser = await usersDBrepository.getUserById(id);
 
     if (dbUser.userName === ADMIN_USER_NAME) {
         throw new Error("Cannot delete the admin user!");

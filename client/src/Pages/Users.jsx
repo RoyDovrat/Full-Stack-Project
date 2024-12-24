@@ -31,12 +31,23 @@ function Users() {
     getAllUsers();
   }, []);
 
+  const handleDeleteUser = (deletedUserId) => {
+    setUsers((prevUsers) => prevUsers.filter((user) => user._id !== deletedUserId));
+  };
+
+  const handleUpdateUser = (updatedUser) => {
+    setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+            user._id === updatedUser._id ? updatedUser : user
+        )
+    );
+};
 
   return (
     <div>
 
       {isAdmin &&
-        users.map((user) => (<User key={user.id} user={user} />))
+        users.map((user) => (<User key={user._id} user={user} handleDeleteUser={handleDeleteUser} handleUpdateUser={handleUpdateUser} />))
       }
 
     </div>
