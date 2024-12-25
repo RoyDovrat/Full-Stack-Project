@@ -65,11 +65,13 @@ function EditUser({ user, setIsEditVisible, handleUpdateUser }) {
 
   const updateUser = async () => {
     try {
+      console.log('in updateUser')
       const token = sessionStorage.getItem('token');
       const config = {
         headers: { 'x-access-token': token },
       };
       const { data } = await axios.put(`${USERS_URL}/${user._id}`, updatedUser, config);
+      console.log("Updated user data:", data);
       handleUpdateUser(data); 
       setIsEditVisible(false); 
     } catch (error) {

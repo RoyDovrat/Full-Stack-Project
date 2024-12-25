@@ -13,9 +13,31 @@ const addPremission = async (Obj) => {
     return 'Added Successfully';
 };
 
-const updatePermissions = async (data) => {
+const updateUserPermissions = async (userId, updatedPermissions) => {
+    const data = await jf.readFile(FILE);
+    
+    const userPermissionsIndex = data.premissions.findIndex(userPerm => userPerm.id === userId);
+    if (userPermissionsIndex === -1) {
+      throw new Error(`User with ID ${userId} not found.`);
+    }
+  
+    data.premissions[userPermissionsIndex] = { ...data.premissions[userPermissionsIndex], ...updatedPermissions };
+  
     await jf.writeFile(FILE, data);
-    return 'Updated Successfully';
-}
+    return 'User Permissions Updated Successfully';
+  };
 
-module.exports = { getAllPermissions, addPremission, updatePermissions };
+  const deletePermissions = async (userId) => {
+    const data = await jf.readFile(FILE);
+  
+    const updatedPermissions = data.premissions.filter(permission => permission.id !== userId);
+    if (updatedPermissions.length === data.premissions.length) {
+      throw new Error(`Permission with ID ${userId} not found.`);
+    }
+  
+    data.premissions = updatedPermissions;
+    await jf.writeFile(FILE, data);
+    return userId;
+  };
+
+module.exports = { getAllPermissions, addPremission, updateUserPermissions, deletePermissions };

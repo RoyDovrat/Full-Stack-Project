@@ -34,14 +34,23 @@ function Users() {
   const handleDeleteUser = (deletedUserId) => {
     setUsers((prevUsers) => prevUsers.filter((user) => user._id !== deletedUserId));
   };
-
+  /*
+    const handleUpdateUser = (updatedUser) => {
+      setUsers((prevUsers) =>
+        prevUsers.map((user) => (user._id === updatedUser._id ? updatedUser : user))
+      );
+    };
+  */
   const handleUpdateUser = (updatedUser) => {
-    setUsers((prevUsers) =>
-        prevUsers.map((user) =>
-            user._id === updatedUser._id ? updatedUser : user
-        )
-    );
-};
+    setUsers((prevUsers) => {
+      console.log("Before update:", prevUsers); // Debugging
+      const updatedUsers = prevUsers.map((user) =>
+        user._id === updatedUser._id ? updatedUser : user
+      );
+      console.log("After update:", updatedUsers); // Debugging
+      return updatedUsers;
+    });
+  };
 
   return (
     <div>
