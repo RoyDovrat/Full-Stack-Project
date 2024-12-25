@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 const USERS_URL = 'http://localhost:3000/users';
@@ -15,8 +16,9 @@ const PERMISSIONS_LIST = [
 const SUBSCRIPTIONS_PERMISSIONS = ["Create Subscriptions", "Update Subscriptions", "Delete Subscriptions"];
 const MOVIES_PERMISSIONS = ["Create Movies", "Update Movies", "Delete Movies"];
 
-function EditUser({ user, setIsEditVisible, handleUpdateUser }) {
+function EditUser({ user, setIsEditVisible }) {
   const [updatedUser, setUpdatedUser] = useState({ ...user });
+  const dispatch = useDispatch();
 
   const handlePermissionChange = (permission, isChecked) => {
     let updatedPermissions = [...updatedUser.permissions];
@@ -65,19 +67,16 @@ function EditUser({ user, setIsEditVisible, handleUpdateUser }) {
 
   const updateUser = async () => {
     try {
-      console.log('in updateUser')
       const token = sessionStorage.getItem('token');
-      const config = {
-        headers: { 'x-access-token': token },
-      };
+      const config = { headers: { 'x-access-token': token } };
       const { data } = await axios.put(`${USERS_URL}/${user._id}`, updatedUser, config);
-      console.log("Updated user data:", data);
-      handleUpdateUser(data); 
-      setIsEditVisible(false); 
+      dispatch({ type: 'UPDATE_USER', payload: data });
+      setIsEditVisible(false);
     } catch (error) {
       console.error('Error updating user:', error.response?.data || error.message);
     }
   };
+
 
   return (
     <>
