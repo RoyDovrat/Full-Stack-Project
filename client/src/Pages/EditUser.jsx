@@ -61,7 +61,7 @@ function EditUser({ user, setIsEditVisible }) {
         }
       }
     }
-
+    console.log("Updated Permissions:", updatedPermissions);
     setUpdatedUser({ ...updatedUser, permissions: updatedPermissions });
   };
 
@@ -102,7 +102,7 @@ function EditUser({ user, setIsEditVisible }) {
         <br /> <br />
         <span className="user-info-label">Username:</span>
         <input
-          type="text"
+          type="email"
           value={updatedUser.userName}
           onChange={(e) => {
             setUpdatedUser({ ...updatedUser, userName: e.target.value });
@@ -111,7 +111,7 @@ function EditUser({ user, setIsEditVisible }) {
         <br /> <br />
         <span className="user-info-label">Session Time Out (Minutes):</span>
         <input
-          type="text"
+          type="number" min={1}
           value={updatedUser.sessionTimeOut}
           onChange={(e) => {
             setUpdatedUser({ ...updatedUser, sessionTimeOut: e.target.value });

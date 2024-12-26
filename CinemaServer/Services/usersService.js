@@ -53,6 +53,7 @@ const getUserByUserName = async (userName) => {
 }
 
 const addUser = async (obj) => {
+    console.log('add service', obj)
     const users = await usersDBrepository.getAllUsers();
     const isUserNameExists = users.some(user => user.userName.toLowerCase() === obj.userName.toLowerCase());
 
@@ -60,7 +61,7 @@ const addUser = async (obj) => {
         throw new Error("Username already exists.");
     }
 
-    const dbUser = await usersDBrepository.addUser({ userName: obj.userName, password: user.password })
+    const dbUser = await usersDBrepository.addUser({ userName: obj.userName, password: obj.password })
 
     await usersFileRepository.addUser({
         id: dbUser._id.toString(),
@@ -75,7 +76,7 @@ const addUser = async (obj) => {
         permissions: obj.permissions
     });
 
-    return dbUser;
+    return obj;
 };
 
 const updateUser = async (id, obj) => {

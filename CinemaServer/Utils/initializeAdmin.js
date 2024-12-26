@@ -20,7 +20,7 @@ const initializeAdminUser = async () => {
       id: adminDB._id.toString(),
       firstName: "Admin",
       lastName: "User",
-      createdDate: new Date().toISOString(),
+      createdDate: new Date().toISOString().split('T')[0],
       sessionTimeOut: 60
     });
 

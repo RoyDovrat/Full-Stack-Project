@@ -48,6 +48,7 @@ router.post('/createAccount', async (req, res) => {
 router.post('/', verifyToken, async (req, res) => {
   try {
     const obj = req.body;
+    console.log('post controller', obj)
     const result = await usersService.addUser(obj);
     res.status(201).json(result);
   } catch (error) {
