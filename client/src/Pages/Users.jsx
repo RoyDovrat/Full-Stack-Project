@@ -7,13 +7,9 @@ import User from './User';
 const USERS_URL = 'http://localhost:3000/users';
 
 function Users() {
-  const [isAdmin, setIsAdmin] = useState(false);
   const users = useSelector((state) => state.users);
+  const currUser = useSelector((state) => state.currUser);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setIsAdmin(sessionStorage.getItem('isAdmin') === 'true');
-  }, []);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -31,7 +27,7 @@ function Users() {
 
   return (
     <div>
-      {isAdmin &&
+      {currUser?.isAdmin &&
         users.map((user) => (
           <User key={user._id} user={user} />
         ))}

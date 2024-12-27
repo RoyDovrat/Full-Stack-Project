@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
+import { useDispatch } from 'react-redux';
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -10,6 +11,7 @@ function LoginPage() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch(); 
 
     const handleLogin = async () => {
         if (!userName || !password) {
@@ -26,6 +28,15 @@ function LoginPage() {
                 sessionStorage.setItem('token', token);
                 sessionStorage.setItem('fullName', decoded.fullName);
                 sessionStorage.setItem('isAdmin', decoded.isAdmin);
+
+                const data ={
+                    id: decoded.userId,
+                    fullName: decoded.fullName,
+                    isAdmin: decoded.isAdmin,
+                    permissions: decoded.permissions
+                }
+                dispatch({ type: 'SET_CURR_USER', payload: data });
+
                 navigate('/main');
             }
 

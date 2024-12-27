@@ -7,6 +7,8 @@ import Subscriptions from './Pages/Subscriptions';
 import UsersManagement from './Pages/UsersManagement';
 import Users from './Pages/Users';
 import AddUser from './Pages/AddUser';
+import AllMovies from './Pages/AllMovies';
+import AddMovie from './Pages/AddMovie';
 
 function App() {
 
@@ -19,11 +21,20 @@ function App() {
         <Route path='/subscriptions' element={<Subscriptions />} />
 
         <Route path='/main' element={<MainPage />}>
+
           <Route path='users-management' element={<UsersManagement />}>
             <Route path='all-users' element={<Users />} />
             <Route path='add-user' element={<AddUser />} />
           </Route>
+
+          <Route path='movies' element={<Movies />}>
+            <Route path='all-movies' element={<AllMovies />} />
+            <Route path='add-movie' element={<AddMovie />} />
+          </Route>
+          
         </Route>
+
+        
 
       </Routes>
 

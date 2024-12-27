@@ -26,7 +26,8 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign({
              userId: user._id,
              isAdmin,
-             fullName: `${user.firstName} ${user.lastName}`
+             fullName: `${user.firstName} ${user.lastName}`,
+             permissions: user.permissions
         },
             SECRET_KEY, { expiresIn: '1h' });
 
