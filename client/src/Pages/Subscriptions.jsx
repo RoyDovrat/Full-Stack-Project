@@ -1,11 +1,19 @@
-function Subscriptions() {
+import { useNavigate, Outlet } from 'react-router-dom';
 
-    return (
-      <>
+function Subscriptions() {
+  const navigate = useNavigate();
+
+  return (
+    <>
+
+      <div className='subscriptions-container'>
         <h3>Subscriptions</h3>
-      </>
-    )
-  }
-  
-  export default Subscriptions
-  
+        <button onClick={() => navigate('/main/subscriptions/all-members')}>All Members</button>
+        <button onClick={() => navigate('/main/subscriptions/add-member')}>Add Member</button> <br /> <br />
+        <Outlet />
+      </div>
+    </>
+  )
+}
+
+export default Subscriptions

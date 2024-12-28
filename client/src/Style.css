@@ -31,6 +31,7 @@
     padding: 15px;
     width: 600px;
 }
+
 .movie-container {
     border: 2px solid black;
     border-radius: 20px;
@@ -51,4 +52,11 @@
 .no-movies-found {
     color: red;
     font-weight: bold;
-  }
+}
+
+.subscriptions-container {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    width: 600px;
+}

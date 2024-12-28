@@ -9,6 +9,8 @@ import Users from './Pages/Users';
 import AddUser from './Pages/AddUser';
 import Movies from './Pages/Movies';
 import AddMovie from './Pages/AddMovie';
+import Members from './Pages/Members';
+import AddMember from './Pages/AddMember';
 
 function App() {
 
@@ -17,7 +19,6 @@ function App() {
       <Routes>
         <Route path='/' element={<LoginPage />} />
         <Route path='/create-account' element={<CreateAccount />} />
-        <Route path='/subscriptions' element={<Subscriptions />} />
 
         <Route path='/main' element={<MainPage />}>
 
@@ -29,6 +30,11 @@ function App() {
           <Route path='movies-management' element={<MoviesManagment />}>
             <Route path='all-movies' element={<Movies />} />
             <Route path='add-movie' element={<AddMovie />} />
+          </Route>
+
+          <Route path='subscriptions' element={<Subscriptions />}>
+            <Route path='all-members' element={<Members />} />
+            <Route path='add-member' element={<AddMember />} />
           </Route>
           
         </Route>

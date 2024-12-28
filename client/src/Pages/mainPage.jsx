@@ -17,7 +17,7 @@ function MainPage() {
 
       <h1>Movies Subscriptions Web Site</h1>
       <button onClick={() => navigate('/main/movies-management')}>Movies</button>
-      <button onClick={() => navigate('/subscriptions')}>Subscriptions</button>
+      <button onClick={() => navigate('/main/subscriptions')}>Subscriptions</button>
       {currUser?.isAdmin && (
         <button onClick={() => navigate('/main/users-management')}>Users Management</button>
       )}
