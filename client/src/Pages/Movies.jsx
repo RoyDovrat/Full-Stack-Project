@@ -19,7 +19,7 @@ function Movies() {
       try {
         const { data } = await axios.get(MOVIES_URL);
         dispatch({ type: 'INITIALIZE_MOVIES', payload: data });
-        setFilteredMovies(data); // Initialize the filteredMovies state with all movies
+        setFilteredMovies(data);
       } catch (error) {
         console.error('Error fetching movies:', error.response?.data || error.message);
       }
@@ -27,11 +27,15 @@ function Movies() {
     fetchMovies();
   }, [dispatch]);
 
+  useEffect(() => {
+    setFilteredMovies(movies); 
+  }, [movies]);
+
   const handleFindMovies = () => {
     const filtered = movies.filter((movie) =>
       movie.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredMovies(filtered); // Update the filteredMovies state with the search results
+    setFilteredMovies(filtered); 
   };
 
   return (
@@ -50,7 +54,6 @@ function Movies() {
           <Movie key={movie._id} movie={movie} />
         ))}
 
-      {/* Display a message if no movies match the search */}
       {filteredMovies.length === 0 && searchTerm && (
         <p className="no-movies-found">No movies found matching "{searchTerm}"</p>
       )}

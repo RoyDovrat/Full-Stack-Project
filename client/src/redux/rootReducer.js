@@ -50,11 +50,17 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 movies: action.payload,
             };
-            
-        case 'DELETE_USER':
+
+        case 'DELETE_MOVIE':
             return {
                 ...state,
                 movies: state.movies.filter((movie) => movie._id !== action.payload),
+            };
+
+        case 'ADD_MOVIE':
+            return {
+                ...state,
+                movie: [...state.movies, action.payload],
             };
 
         default:

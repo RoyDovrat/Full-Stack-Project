@@ -20,7 +20,9 @@ function Movie({ movie }) {
 
     const deleteMovie = async () => {
         try {
-            await axios.delete(`${MOVIES_URL}/${movie._id}`);
+            const { data } = await axios.delete(`${MOVIES_URL}/${movie._id}`);
+            console.log(`Movie deleted successfully. ID: ${data._id}, Name: ${data.name}`);
+            alert(`Movie "${data.name}" deleted successfully.`);
             dispatch({ type: 'DELETE_MOVIE', payload: movie._id });
         } catch (error) {
             console.error('Error deleting movie:', error.response?.data || error.message);
@@ -51,9 +53,6 @@ function Movie({ movie }) {
 
                 {currUser?.permissions?.includes(CREATE_MOVIE_PERMISSION) && <button onClick={() => setIsEditVisible(true)}>Edit</button>}
                 {currUser?.permissions?.includes(DELETE_MOVIE_PERMISSION) && <button onClick={deleteMovie}>Delete</button>}
-
-
-
             </div>
 
         </>
