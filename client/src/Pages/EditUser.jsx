@@ -80,7 +80,7 @@ function EditUser({ user, setIsEditVisible }) {
 
   return (
     <>
-      <h2>Edit User: {`${user.firstName} ${user.lastName}`}</h2>
+      <h2 style={{ fontWeight: 'bold' }}>Edit User: {`${user.firstName} ${user.lastName}`}</h2>
       <div className="user-container">
         <span className="user-info-label">First Name:</span>
         <input

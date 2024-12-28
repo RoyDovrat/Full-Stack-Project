@@ -60,7 +60,15 @@ const usersReducer = (state = initialState, action) => {
         case 'ADD_MOVIE':
             return {
                 ...state,
-                movie: [...state.movies, action.payload],
+                movies: [...state.movies, action.payload],
+            };
+
+        case 'UPDATE_MOVIE':
+            return {
+                ...state,
+                movies: state.movies.map((movie) =>
+                    movie._id === action.payload._id ? action.payload : movie
+                ),
             };
 
         default:

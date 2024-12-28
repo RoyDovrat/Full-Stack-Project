@@ -43,9 +43,6 @@ function User({ user }) {
 
                         <button onClick={() => setIsEditVisible(true)}>Edit</button>
                         <button onClick={deleteUser}>Delete</button>
-
-
-
                     </div>
                 )}
         </>

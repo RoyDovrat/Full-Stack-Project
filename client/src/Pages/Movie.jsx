@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
+import EditMovie from './EditMovie';
 
 const MOVIES_URL = 'http://localhost:8000/movies';
 const CREATE_MOVIE_PERMISSION = "Create Movies";
@@ -16,7 +17,7 @@ function Movie({ movie }) {
         const dateStr = movie.premiered;
         const year = dateStr.split('-')[0];
         setPremieredYear(year)
-    }, []);
+    }, [movie]);
 
     const deleteMovie = async () => {
         try {
@@ -31,7 +32,9 @@ function Movie({ movie }) {
 
     return (
         <>
-            <div className="movie-container">
+            {isEditVisible ?
+                (<EditMovie movie={movie} setIsEditVisible={setIsEditVisible} />) :
+                (<div className="movie-container">
                 <span style={{ fontWeight: 'bold' }}>{`${movie.name}, ${premieredYear}`}</span>
                 <br />
                 <span className="movie-info-label">Genres:</span>
@@ -53,8 +56,8 @@ function Movie({ movie }) {
 
                 {currUser?.permissions?.includes(CREATE_MOVIE_PERMISSION) && <button onClick={() => setIsEditVisible(true)}>Edit</button>}
                 {currUser?.permissions?.includes(DELETE_MOVIE_PERMISSION) && <button onClick={deleteMovie}>Delete</button>}
-            </div>
-
+            </div>)
+            }
         </>
     )
 }
