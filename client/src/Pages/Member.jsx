@@ -43,7 +43,7 @@ function Member({ member }) {
                     <div className="subscriptions-watched-container">
                         <span className="member-info-label">Movies watched:</span>
                         <button>Subscribe to new movie</button>
-                        {member.moviesWatched.length > 0 ? (
+                        {member.moviesWatched?.length > 0 ? (
                             <ul>
                                 {member.moviesWatched.map((movie, index) => (
                                     <li key={index}>

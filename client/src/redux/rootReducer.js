@@ -94,6 +94,14 @@ const usersReducer = (state = initialState, action) => {
                 ),
             };
 
+        case 'ADD_MEMBER':
+            return {
+                ...state,
+                members: [...state.members, action.payload],
+            };
+
+
+
         default:
             return state;
     }
