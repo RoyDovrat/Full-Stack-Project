@@ -6,7 +6,7 @@
     width: 600px;
 }
 
-
+.member-info-label,
 .user-info-label,
 .member-info-label,
 .movie-info-label {
@@ -35,6 +35,7 @@
     width: 600px;
 }
 
+.member-container,
 .user-container,
 .movie-container,
 .member-container {

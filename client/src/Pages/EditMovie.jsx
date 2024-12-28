@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const MOVIES_URL = 'http://localhost:8000/movies';
 
-function EditUser({ movie, setIsEditVisible }) {
+function EditMovie({ movie, setIsEditVisible }) {
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const year = date.getFullYear();
@@ -83,4 +83,4 @@ function EditUser({ movie, setIsEditVisible }) {
     );
 }
 
-export default EditUser;
+export default EditMovie;

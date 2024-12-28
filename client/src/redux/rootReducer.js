@@ -84,6 +84,16 @@ const usersReducer = (state = initialState, action) => {
                 members: state.members.filter((member) => member._id !== action.payload),
             };
 
+        case 'UPDATE_MEMBER':
+            return {
+                ...state,
+                members: state.members.map((member) =>
+                    member._id === action.payload._id
+                        ? { ...member, ...action.payload }
+                        : member
+                ),
+            };
+
         default:
             return state;
     }
