@@ -1,12 +1,16 @@
 const initialState = {
     users: [],
-    currUser: {}
+    currUser: {},
+    movies: []
 };
 
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'INITIALIZE_USERS':
-            return { users: action.payload };
+            return {
+                ...state,
+                users: action.payload,
+            };
 
         case 'ADD_USER':
             return {
@@ -39,6 +43,18 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currUser: action.payload,
+            };
+
+        case 'INITIALIZE_MOVIES':
+            return {
+                ...state,
+                movies: action.payload,
+            };
+            
+        case 'DELETE_USER':
+            return {
+                ...state,
+                movies: state.movies.filter((movie) => movie._id !== action.payload),
             };
 
         default:

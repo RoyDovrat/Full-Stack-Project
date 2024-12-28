@@ -19,9 +19,36 @@
     margin-right: 5px;
 }
 
+.movie-info-label {
+    text-decoration: underline;
+    color: black;
+    margin-right: 5px;
+}
+
 .moviesManagement-container {
     border: 2px solid black;
     border-radius: 20px;
     padding: 15px;
     width: 600px;
 }
+.movie-container {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    width: 400px;
+    margin-bottom: 15px;
+}
+
+
+.subscriptions-watched-container {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    width: 200px;
+    margin-bottom: 15px;
+}
+
+.no-movies-found {
+    color: red;
+    font-weight: bold;
+  }

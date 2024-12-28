@@ -33,7 +33,7 @@ function LoginPage() {
                     id: decoded.userId,
                     fullName: decoded.fullName,
                     isAdmin: decoded.isAdmin,
-                    permissions: decoded.permissions
+                    permissions: decoded.permissions || []
                 }
                 dispatch({ type: 'SET_CURR_USER', payload: data });
 

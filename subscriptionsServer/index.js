@@ -8,7 +8,7 @@ const moviesRouter = require('./Controllers/moviesController');
 const subscriptionsRouter = require('./Controllers/SubscriptionsController');
 
 const app = express();
-const PORT = 3000;
+const PORT = 8000;
 
 connectDB().then(async () =>{
   console.log('Connected to MongoDB');
