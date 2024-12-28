@@ -1,7 +1,8 @@
 const initialState = {
     users: [],
     currUser: {},
-    movies: []
+    movies: [],
+    members: []
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -69,6 +70,18 @@ const usersReducer = (state = initialState, action) => {
                 movies: state.movies.map((movie) =>
                     movie._id === action.payload._id ? action.payload : movie
                 ),
+            };
+
+        case 'INITIALIZE_MEMBERS':
+            return {
+                ...state,
+                members: action.payload,
+            };
+
+        case 'DELETE_MEMBER':
+            return {
+                ...state,
+                members: state.members.filter((member) => member._id !== action.payload),
             };
 
         default:

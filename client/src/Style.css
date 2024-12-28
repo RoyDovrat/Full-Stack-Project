@@ -1,3 +1,4 @@
+.moviesManagement-container,
 .usersManagement-container {
     border: 2px solid black;
     border-radius: 20px;
@@ -5,41 +6,14 @@
     width: 600px;
 }
 
-.user-container {
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 15px;
-    width: 400px;
-    margin-bottom: 15px;
-}
 
-.user-info-label {
-    text-decoration: underline;
-    color: black;
-    margin-right: 5px;
-}
-
+.user-info-label,
+.member-info-label,
 .movie-info-label {
     text-decoration: underline;
     color: black;
     margin-right: 5px;
 }
-
-.moviesManagement-container {
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 15px;
-    width: 600px;
-}
-
-.movie-container {
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 15px;
-    width: 400px;
-    margin-bottom: 15px;
-}
-
 
 .subscriptions-watched-container {
     border: 2px solid black;
@@ -60,3 +34,14 @@
     padding: 15px;
     width: 600px;
 }
+
+.user-container,
+.movie-container,
+.member-container {
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 15px;
+    width: 400px;
+    margin-bottom: 15px;
+}
+

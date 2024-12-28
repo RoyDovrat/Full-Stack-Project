@@ -3,7 +3,16 @@ const membersService = require('../Services/membersDBservice');
 
 const router = express.Router();
 
-// Entry point: http://localhost:3000/members
+// Entry point: http://localhost:8000/members
+
+router.get('/WithMoviesWatched', async (req, res) => {
+  try {
+    const members = await membersService.getAllMembersWithMoviesWatched();
+    res.json(members);
+  } catch (error) {
+    res.json(error);
+  }
+});
 
 router.get('/', async (req, res) => {
   try {
@@ -49,7 +58,7 @@ router.patch('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await membersService.deleteMember(id);
+    const result = await membersService.deleteMemberWithSubscription(id);
     res.json(result);
   } catch (error) {
     res.json(error);

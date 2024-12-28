@@ -3,7 +3,7 @@ const moviesService = require('../Services/moviesDBservice');
 
 const router = express.Router();
 
-// Entry point: http://localhost:3000/movies
+// Entry point: http://localhost:8000/movies
 
 router.get('/', async (req, res) => {
   try {

@@ -3,7 +3,7 @@ const SubscriptionsService = require('../Services/SubscriptionsDBservice');
 
 const router = express.Router();
 
-// Entry point: http://localhost:3000/subscriptions
+// Entry point: http://localhost:8000/subscriptions
 
 router.get('/', async (req, res) => {
   try {
