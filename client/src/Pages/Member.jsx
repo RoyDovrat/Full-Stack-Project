@@ -54,16 +54,15 @@ function Member({ member }) {
 
                     <div className="subscriptions-watched-container">
                         <span className="member-info-label">Movies watched:</span>
-                        {isShowSubscribe ? (
-                            <SubscribeToNewMovie
-                                member={member}
-                                setIsShowSubscribe={setIsShowSubscribe}
-                            />
-                        ) : (
-                            <button onClick={() => setIsShowSubscribe(true)}>
-                                Subscribe to new movie
-                            </button>
-                        )}
+
+                        <button onClick={() => setIsShowSubscribe(!isShowSubscribe)}>
+                            Subscribe to new movie
+                        </button>
+
+                        {isShowSubscribe &&
+                            <SubscribeToNewMovie member={member} setIsShowSubscribe={setIsShowSubscribe} />
+                        }
+                        
                         {member.moviesWatched?.length > 0 ? (
                             <ul>
                                 {member.moviesWatched.map((movie, index) => (

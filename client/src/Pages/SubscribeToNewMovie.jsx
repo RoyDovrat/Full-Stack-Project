@@ -45,7 +45,6 @@ function SubscribeToNewMovie({ member, setIsShowSubscribe }) {
             dispatch({ type: 'ADD_SUBSCRIPTIONS', payload: newMemberSubscription });
             console.log(`Subscriptions added successfully. ID: ${data._id}`);
             alert(`Subscriptions added successfully.`);
-            setIsShowSubscribe(false)
         } catch (error) {
             console.error('Error adding subscriptions:', error.response?.data || error.message);
         }
