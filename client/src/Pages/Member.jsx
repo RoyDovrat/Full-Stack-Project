@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import EditMember from './EditMember';
 import SubscribeToNewMovie from './SubscribeToNewMovie';
@@ -13,6 +14,7 @@ function Member({ member }) {
     const [isEditVisible, setIsEditVisible] = useState(false);
     const [isShowSubscribe, setIsShowSubscribe] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const deleteMember = async () => {
         try {
@@ -23,6 +25,10 @@ function Member({ member }) {
         } catch (error) {
             console.error('Error deleting member:', error.response?.data || error.message);
         }
+    };
+
+    const handleMovieClick = (movieId) => {
+        navigate(`/main/movies-management/all-movies/${movieId}`);
     };
 
     return (
@@ -62,7 +68,10 @@ function Member({ member }) {
                             <ul>
                                 {member.moviesWatched.map((movie, index) => (
                                     <li key={index}>
-                                         <span>{movie.name}</span> - <span>{new Date(movie.date).toISOString().split('T')[0]}</span>
+                                        <span style={{ cursor: 'pointer', color: 'blue' }}
+                                            onClick={() => handleMovieClick(movie.movieId)}
+                                        >{movie.name}</span> -
+                                        <span>{new Date(movie.date).toISOString().split('T')[0]}</span>
                                     </li>
                                 ))}
                             </ul>

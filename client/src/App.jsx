@@ -11,6 +11,8 @@ import Movies from './Pages/Movies';
 import AddMovie from './Pages/AddMovie';
 import Members from './Pages/Members';
 import AddMember from './Pages/AddMember';
+import MovieDetails from './Pages/MovieDetails';
+
 
 function App() {
 
@@ -28,7 +30,8 @@ function App() {
           </Route>
 
           <Route path='movies-management' element={<MoviesManagment />}>
-            <Route path='all-movies' element={<Movies />} />
+            <Route path='all-movies' element={<Movies />}></Route>
+            <Route path='all-movies/:movieId' element={<MovieDetails />} />
             <Route path='add-movie' element={<AddMovie />} />
           </Route>
 
@@ -36,10 +39,10 @@ function App() {
             <Route path='all-members' element={<Members />} />
             <Route path='add-member' element={<AddMember />} />
           </Route>
-          
+
         </Route>
 
-        
+
 
       </Routes>
 
