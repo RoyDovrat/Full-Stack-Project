@@ -12,39 +12,39 @@ function SubscribeToNewMovie({ member, setIsShowSubscribe }) {
     const [unwatchedMovies, setUnwatchedMovies] = useState([]);
     const currUser = useSelector((state) => state.currUser);
     const allMovies = useSelector((state) => state.movies);
+    const members = useSelector((state) => state.members);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('in sub comp', allMovies)
         const watchedMovieIds = member.moviesWatched.map((movie) => movie.movieId);
         const unwatched = allMovies.filter((movie) => !watchedMovieIds.includes(movie._id));
         setUnwatchedMovies(unwatched);
     }, [member, allMovies]);
 
     const addSubscription = async () => {
-        if (!selectedMovieId || !date) {
+        if (!selectedMovieId || !selectedDate) {
             alert('Please select a movie and provide a date.');
             return;
         }
 
-        const movie = movies.find((m) => m._id === selectedMovieId);
+        const movie = allMovies.find((m) => m._id === selectedMovieId);
 
         const newSubscription = {
             memberId: member._id,
             movies: [{ movieId: selectedMovieId, date: selectedDate }],
         }
 
-        const newMmberSubscription = {
+        const newMemberSubscription = {
             memberId: member._id,
             movies: [{ movieId: selectedMovieId, name:movie.name, date: selectedDate }],
         }
 
         try {
             const { data } = await axios.post(SUBSCRIPTIONS_URL, newSubscription);
-            dispatch({ type: 'ADD_SUBSCRIPTIONS', payload: newMmberSubscription });
+            dispatch({ type: 'ADD_SUBSCRIPTIONS', payload: newMemberSubscription });
             console.log(`Subscriptions added successfully. ID: ${data._id}`);
-            alert(`Subscriptions "${data.name}" added successfully.`);
+            alert(`Subscriptions added successfully.`);
             setIsShowSubscribe(false)
         } catch (error) {
             console.error('Error adding subscriptions:', error.response?.data || error.message);

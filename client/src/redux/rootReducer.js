@@ -100,6 +100,24 @@ const usersReducer = (state = initialState, action) => {
                 members: [...state.members, action.payload],
             };
 
+        case 'ADD_SUBSCRIPTIONS':
+            const updatedMembers = state.members.map((member) =>
+                member._id === action.payload.memberId
+                    ? {
+                        ...member,
+                        moviesWatched: [
+                            ...member.moviesWatched,
+                            ...action.payload.movies, 
+                        ],
+                    }
+                    : member
+            ); 
+            return {
+                ...state,
+                members: updatedMembers,
+            };
+
+
 
 
         default:

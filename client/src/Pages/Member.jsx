@@ -62,7 +62,7 @@ function Member({ member }) {
                             <ul>
                                 {member.moviesWatched.map((movie, index) => (
                                     <li key={index}>
-                                        <span>{movie.name}</span> - <span>{movie.watchedDate}</span>
+                                         <span>{movie.name}</span> - <span>{new Date(movie.date).toISOString().split('T')[0]}</span>
                                     </li>
                                 ))}
                             </ul>

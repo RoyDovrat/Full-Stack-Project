@@ -2,6 +2,7 @@ const { getAllMembersData } = require('../Services/membersWSservice');
 const { getAllMoviesData } = require('../Services/moviesWSservice');
 const Member = require('../Models/memberModel');
 const Movie = require('../Models/movieModel');
+const Subscription = require('../Models/subscriptionModel');
 
 const initializeData = async () => {
     try {
@@ -13,6 +14,7 @@ const initializeData = async () => {
         // clear the existing collections
         await Member.deleteMany({});
         await Movie.deleteMany({});
+        await Subscription.deleteMany({});
 
         // Insert the new data
         await Member.insertMany(members);

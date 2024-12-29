@@ -1,31 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 import '../Style.css';
 import Movie from './Movie';
 
-const MOVIES_URL = 'http://localhost:8000/movies';
 const VIEW_MOVIE_PERMISSION = "View Movies";
 
 function Movies() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredMovies, setFilteredMovies] = useState([]);
   const movies = useSelector((state) => state.movies);
+  const [filteredMovies, setFilteredMovies] = useState([...movies]);
   const currUser = useSelector((state) => state.currUser);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const { data } = await axios.get(MOVIES_URL);
-        dispatch({ type: 'INITIALIZE_MOVIES', payload: data });
-        setFilteredMovies(data);
-      } catch (error) {
-        console.error('Error fetching movies:', error.response?.data || error.message);
-      }
-    };
-    fetchMovies();
-  }, [dispatch]);
 
   useEffect(() => {
     setFilteredMovies(movies); 
