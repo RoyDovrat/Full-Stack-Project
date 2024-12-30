@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import EditMember from './EditMember';
 import SubscribeToNewMovie from './SubscribeToNewMovie';
@@ -9,12 +9,14 @@ const MEMBERS_URL = 'http://localhost:8000/members';
 const CREATE_SUBSCRIPTIONS_PERMISSION = "Create Subscriptions";
 const DELETE_SUBSCRIPTIONS_PERMISSION = "Delete Subscriptions";
 
-function Member({ member }) {
+function Member({ member: propMember }) {
     const currUser = useSelector((state) => state.currUser);
     const [isEditVisible, setIsEditVisible] = useState(false);
     const [isShowSubscribe, setIsShowSubscribe] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const member = location.state?.member || propMember;
 
     const deleteMember = async () => {
         try {

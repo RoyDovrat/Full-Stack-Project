@@ -41,9 +41,8 @@ function Movie({ movie }) {
     };
 
     const handleMemberClick = (member) => {
-        dispatch({ type: 'UPDATE_CHOSEN_MEMBER', payload: member });
-        navigate('/main/subscriptions/all-members')
-    }
+        navigate('/main/subscriptions/all-members', { state: { member } });
+    };
 
     return (
         <>
