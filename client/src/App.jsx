@@ -42,10 +42,7 @@ function App() {
 
         </Route>
 
-
-
       </Routes>
-
     </>
   )
 }

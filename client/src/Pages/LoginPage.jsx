@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const URL = 'http://localhost:3000/auth/login';
 
 function LoginPage() {
-    const [userName, setUseName] = useState('');
+    const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
     const navigate = useNavigate();
     const dispatch = useDispatch(); 
 
@@ -55,10 +56,9 @@ function LoginPage() {
             <h1>Movies Subscriptions Web Site</h1>
             <h3>Log in Page</h3>
             <label>User name:</label>
-            {/*change to email and update the admin to email in the backend*/ }
-            <input type="text" placeholder="User Name" onChange={(e) => setUseName(e.target.value)} /><br /><br />
+            <input type="email" placeholder="User Name" onChange={(e) => setUserName(e.target.value)} required/><br /><br />
             <label>Password:</label>
-            <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
+            <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} required/><br /><br />
             <button onClick={handleLogin}>Login</button> <br />
 
             New User?: <Link to='/create-account'>Create Account</Link> <br />

@@ -53,7 +53,6 @@ const getUserByUserName = async (userName) => {
 }
 
 const addUser = async (obj) => {
-    console.log('add service', obj)
     const users = await usersDBrepository.getAllUsers();
     const isUserNameExists = users.some(user => user.userName.toLowerCase() === obj.userName.toLowerCase());
 

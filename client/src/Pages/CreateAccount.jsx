@@ -10,12 +10,26 @@ function CreateAccount() {
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleCreate = async () => {
+  const isStrongPassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+  };
+
+  const checkValidation = () => {
     if (!userName || !password) {
       setMessage('Please enter both username and password.');
       return;
     }
 
+    if (!isStrongPassword(password)) {
+      setMessage('Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character.');
+      return;
+    }
+  }
+
+  const handleCreate = async () => {
+    checkValidation();
+    
     try {
       const resp = await axios.post(URL, { userName, password });
 
@@ -41,7 +55,7 @@ function CreateAccount() {
       <h3>Create An Account</h3>
 
       <label>User name:</label>
-      <input type="text" placeholder="User Name" onChange={(e) => setUseName(e.target.value)} /><br /><br />
+      <input type="email" placeholder="User Name" onChange={(e) => setUseName(e.target.value)} /><br /><br />
       <label>Password:</label>
       <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
       <button onClick={handleCreate}>Create</button> <br />

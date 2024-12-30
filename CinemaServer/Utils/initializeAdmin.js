@@ -5,8 +5,8 @@ const permissionsRepository = require('../Repositories/permissionsRepository');
 const ADMIN_PERMISSION = "Admin Permissions"
 
 const initializeAdminUser = async () => {
-  const adminUserName = "admin";
-  const adminPassword = "admin123";
+  const adminUserName = "admin@cinema.com";
+  const adminPassword = "Admin246";
 
   const users = await usersDBrepository.getAllUsers();
   const isAdminExists = users.some(user => user.userName.toLowerCase() === adminUserName.toLowerCase());

@@ -48,7 +48,6 @@ router.post('/createAccount', async (req, res) => {
 router.post('/', verifyToken, async (req, res) => {
   try {
     const obj = req.body;
-    console.log('post controller', obj)
     const result = await usersService.addUser(obj);
     res.status(201).json(result);
   } catch (error) {
@@ -58,7 +57,6 @@ router.post('/', verifyToken, async (req, res) => {
 
 router.put('/:id', verifyToken, async (req, res) => {
   try {
-    console.log('in controller')
     const { id } = req.params;
     const obj = req.body;
     const result = await usersService.updateUser(id, obj);

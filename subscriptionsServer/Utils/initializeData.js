@@ -16,7 +16,7 @@ const initializeData = async () => {
         await Movie.deleteMany({});
         await Subscription.deleteMany({});
 
-        // Insert the new data
+        // insert the new data
         await Member.insertMany(members);
         await Movie.insertMany(movies);
 

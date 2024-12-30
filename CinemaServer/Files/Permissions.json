@@ -1,1 +1,5 @@
-{"premissions":[{"id":"676bd3cdcfa87d09facb5900","permissions":["View Subscriptions","Create Subscriptions","Delete Subscriptions","View Movies","Create Movies","Delete Movies","Admin Permissions"]},{"id":"676c0ed3698420281e122514","permissions":["View Subscriptions"]}]}
+{
+    "premissions": [
+        
+    ]
+}
