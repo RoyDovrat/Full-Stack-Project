@@ -4,12 +4,13 @@ import { useEffect } from 'react';
 import axios from 'axios';
 
 const MOVIES_URL = 'http://localhost:8000/movies';
+const MEMBERS_URL = 'http://localhost:8000/members//WithMoviesWatched';
 
 function MainPage() {
   const currUser = useSelector((state) => state.currUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -19,7 +20,18 @@ function MainPage() {
         console.error('Error fetching movies:', error.response?.data || error.message);
       }
     };
+    const fetchMembers = async () => {
+      try {
+        const { data } = await axios.get(MEMBERS_URL);
+        dispatch({ type: 'INITIALIZE_MEMBERS', payload: data });
+        console.log('members', data)
+      } catch (error) {
+        console.error('Error fetching members:', error.response?.data || error.message);
+      }
+    };
+
     fetchMovies();
+    fetchMembers();
   }, [dispatch]);
 
 
@@ -28,7 +40,7 @@ function MainPage() {
     navigate('/');
   };
 
-  
+
 
   return (
     <>
