@@ -12,8 +12,10 @@ function Movie({ movie }) {
     const [isEditVisible, setIsEditVisible] = useState(false);
     const [premieredYear, setPremieredYear] = useState('')
     const [subscribers, setSubscribers] = useState([]);
+
     const currUser = useSelector((state) => state.currUser);
     const members = useSelector((state) => state.members);
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

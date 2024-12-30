@@ -15,7 +15,8 @@ function Member({ member: propMember }) {
     const [isShowSubscribe, setIsShowSubscribe] = useState(false);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const location = useLocation();
+    
     const member = location.state?.member || propMember;
 
     const deleteMember = async () => {

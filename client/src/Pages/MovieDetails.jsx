@@ -5,8 +5,8 @@ import axios from 'axios';
 const MOVIES_URL = 'http://localhost:8000/movies';
 
 function MovieDetails() {
-  const { movieId } = useParams();  // Get the movieId from the URL
-  const [movie, setMovie] = useState(null);
+  const [movie, setMovie] = useState({});
+  const { movieId } = useParams();  
 
   useEffect(() => {
     const fetchMovieDetails = async () => {

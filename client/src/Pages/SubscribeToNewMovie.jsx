@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const SUBSCRIPTIONS_URL = 'http://localhost:8000/subscriptions';
@@ -10,11 +9,11 @@ function SubscribeToNewMovie({ member, setIsShowSubscribe }) {
     const [selectedDate, setSelectedDate] = useState('')
     const [selectedMovieId, setSelectedMovieId] = useState('')
     const [unwatchedMovies, setUnwatchedMovies] = useState([]);
+
     const currUser = useSelector((state) => state.currUser);
     const allMovies = useSelector((state) => state.movies);
-    const members = useSelector((state) => state.members);
+
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
         const watchedMovieIds = member.moviesWatched.map((movie) => movie.movieId);
