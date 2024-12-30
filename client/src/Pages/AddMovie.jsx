@@ -46,8 +46,8 @@ function AddMovie() {
         <span className="movie-info-label">Premiered</span>
         <input type="date" min={1} onChange={(e) => { setNewMovie({ ...newMovie, premiered: e.target.value }); }} />
         <br /> <br />
-        <button onClick={addMovie}>Save</button>
-        <button onClick={() => navigate('/main/movies-management/all-movies')}>Cancel</button>
+        <button className="button-edit-movie" onClick={addMovie}>Save</button>
+        <button className="button-edit-movie" onClick={() => navigate('/main/movies-management/all-movies')}>Cancel</button>
       </div>}
     </>
   );

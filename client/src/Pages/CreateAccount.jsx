@@ -58,7 +58,7 @@ function CreateAccount() {
       <input type="email" placeholder="User Name" onChange={(e) => setUseName(e.target.value)} /><br /><br />
       <label>Password:</label>
       <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} /><br /><br />
-      <button onClick={handleCreate}>Create</button> <br />
+      <button className="button" onClick={handleCreate}>Create</button> <br />
 
       {message && <p style={{ color: 'red' }}>{message}</p>}
     </>

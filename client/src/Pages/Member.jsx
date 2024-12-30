@@ -48,17 +48,17 @@ function Member({ member: propMember }) {
                     {member.city} <br /> <br />
 
                     {currUser?.permissions?.includes(CREATE_SUBSCRIPTIONS_PERMISSION) && (
-                        <button onClick={() => setIsEditVisible(true)}>Edit</button>
+                        <button className="button-edit-member" onClick={() => setIsEditVisible(true)}>Edit</button>
                     )}
                     {currUser?.permissions?.includes(DELETE_SUBSCRIPTIONS_PERMISSION) && (
-                        <button onClick={deleteMember}>Delete</button>
+                        <button className="button-edit-member" onClick={deleteMember}>Delete</button>
                     )}
                     <br /> <br />
 
                     <div className="subscriptions-watched-container">
                         <span className="member-info-label">Movies watched:</span>
 
-                        <button onClick={() => setIsShowSubscribe(!isShowSubscribe)}>
+                        <button className="button-edit-member" onClick={() => setIsShowSubscribe(!isShowSubscribe)}>
                             Subscribe to new movie
                         </button>
 

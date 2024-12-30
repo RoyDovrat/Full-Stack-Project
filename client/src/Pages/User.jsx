@@ -41,8 +41,8 @@ function User({ user }) {
                             ))}
                         </ul> <br /> <br />
 
-                        <button onClick={() => setIsEditVisible(true)}>Edit</button>
-                        <button onClick={deleteUser}>Delete</button>
+                        <button className="button-edit-user" onClick={() => setIsEditVisible(true)}>Edit</button>
+                        <button className="button-edit-user" onClick={deleteUser}>Delete</button>
                     </div>
                 )}
         </>

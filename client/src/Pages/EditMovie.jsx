@@ -76,8 +76,8 @@ function EditMovie({ movie, setIsEditVisible }) {
                     }}
                 />
                 <br /> <br />
-                <button onClick={updateMovie}>Update</button>
-                <button onClick={() => setIsEditVisible(false)}>Cancel</button>
+                <button className="button-edit-movie" onClick={updateMovie}>Update</button>
+                <button className="button-edit-movie" onClick={() => setIsEditVisible(false)}>Cancel</button>
             </div>
         </>
     );

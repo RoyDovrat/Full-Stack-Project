@@ -45,8 +45,8 @@ function AddMember() {
           <input type="text" onChange={(e) => { setNewMember({ ...newMember, city: e.target.value }); }} />
           <br /> <br />
          
-          <button onClick={addMember}>Save</button>
-          <button onClick={() => navigate('/main/subscriptions/all-members')}>Cancel</button>
+          <button className="button-edit-member" onClick={addMember}>Save</button>
+          <button className="button-edit-member" onClick={() => navigate('/main/subscriptions/all-members')}>Cancel</button>
         </div>}
     </>
   );

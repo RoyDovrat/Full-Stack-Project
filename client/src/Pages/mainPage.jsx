@@ -43,15 +43,15 @@ function MainPage() {
 
   return (
     <>
-      <h3>Welcome, {currUser?.fullName || 'Guest'}</h3>
+      <p>Welcome, {currUser?.fullName || 'Guest'}</p>
 
       <h1>Movies Subscriptions Web Site</h1>
-      <button onClick={() => navigate('/main/movies-management')}>Movies</button>
-      <button onClick={() => navigate('/main/subscriptions')}>Subscriptions</button>
+      <button className="button-mainPage" onClick={() => navigate('/main/movies-management')}>Movies</button>
+      <button className="button-mainPage" onClick={() => navigate('/main/subscriptions')}>Subscriptions</button>
       {currUser?.isAdmin && (
-        <button onClick={() => navigate('/main/users-management')}>Users Management</button>
+        <button className="button-mainPage" onClick={() => navigate('/main/users-management')}>Users Management</button>
       )}
-      <button onClick={handleLogout}>Log Out</button> <br /> <br />
+      <button className="button-mainPage" onClick={handleLogout}>Log Out</button> <br /> <br />
       <Outlet />
     </>
   );

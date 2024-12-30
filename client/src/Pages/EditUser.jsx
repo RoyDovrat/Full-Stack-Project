@@ -138,8 +138,8 @@ function EditUser({ user, setIsEditVisible }) {
           ))}
         </ul>
         <br /> <br />
-        <button onClick={updateUser}>Update</button>
-        <button onClick={() => setIsEditVisible(false)}>Cancel</button>
+        <button className="button-edit-user" onClick={updateUser}>Update</button>
+        <button className="button-edit-user" onClick={() => setIsEditVisible(false)}>Cancel</button>
       </div>
     </>
   );

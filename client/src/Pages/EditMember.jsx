@@ -51,8 +51,8 @@ function EditMember({ member, setIsEditVisible }) {
                     }}
                 />
                 <br /> <br />
-                <button onClick={updateMember}>Update</button>
-                <button onClick={() => setIsEditVisible(false)}>Cancel</button>
+                <button className="button-edit-member" onClick={updateMember}>Update</button>
+                <button className="button-edit-member" onClick={() => setIsEditVisible(false)}>Cancel</button>
             </div>
         </>
     );

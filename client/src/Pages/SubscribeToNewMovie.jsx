@@ -74,8 +74,8 @@ function SubscribeToNewMovie({ member, setIsShowSubscribe }) {
                             setSelectedDate(e.target.value);
                         }} /> <br /> <br />
 
-                    <button onClick={addSubscription}>Save</button>
-                    <button onClick={() => setIsShowSubscribe(false)}>Cancel</button>
+                    <button className="button-edit-member" onClick={addSubscription}>Save</button>
+                    <button className="button-edit-member" onClick={() => setIsShowSubscribe(false)}>Cancel</button>
                 </div>}
         </>
     );

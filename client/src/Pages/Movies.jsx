@@ -11,9 +11,6 @@ function Movies() {
   const [filteredMovies, setFilteredMovies] = useState([...movies]);
   const currUser = useSelector((state) => state.currUser);
 
-  console.log('curr user', currUser)
-  console.log(currUser?.permissions?.includes(VIEW_MOVIE_PERMISSION))
-
   useEffect(() => {
     setFilteredMovies(movies); 
   }, [movies]);
@@ -33,7 +30,7 @@ function Movies() {
         onChange={(e) => setSearchTerm(e.target.value)}
         value={searchTerm}
       />
-      <button onClick={handleFindMovies}>Find</button>
+      <button className="button" onClick={handleFindMovies}>Find</button>
       <br /><br />
 
       {currUser?.permissions?.includes(VIEW_MOVIE_PERMISSION) &&
@@ -42,7 +39,7 @@ function Movies() {
         ))}
 
       {filteredMovies.length === 0 && searchTerm && (
-        <p className="no-movies-found">No movies found matching "{searchTerm}"</p>
+        <p className="no-movies-found">No movies found matching"{searchTerm}"</p>
       )}
     </div>
   );

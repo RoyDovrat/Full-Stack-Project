@@ -8,8 +8,8 @@ function Subscriptions() {
 
       <div className='subscriptions-container'>
         <h3>Subscriptions</h3>
-        <button onClick={() => navigate('/main/subscriptions/all-members')}>All Members</button>
-        <button onClick={() => navigate('/main/subscriptions/add-member')}>Add Member</button> <br /> <br />
+        <button className="button" onClick={() => navigate('/main/subscriptions/all-members')}>All Members</button>
+        <button className="button" onClick={() => navigate('/main/subscriptions/add-member')}>Add Member</button> <br /> <br />
         <Outlet />
       </div>
     </>

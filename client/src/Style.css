@@ -1,18 +1,21 @@
 .moviesManagement-container,
 .usersManagement-container {
-    border: 2px solid black;
+    border: 2px solid gray;
     border-radius: 20px;
     padding: 15px;
-    width: 600px;
+    width: 500px;
 }
 
+.login-label,
 .member-info-label,
 .user-info-label,
 .member-info-label,
 .movie-info-label {
     text-decoration: underline;
+    text-decoration-color: blue;
     color: black;
     margin-right: 5px;
+    
 }
 
 .subscriptions-watched-container {
@@ -29,10 +32,10 @@
 }
 
 .subscriptions-container {
-    border: 2px solid black;
+    border: 2px solid gray;
     border-radius: 20px;
     padding: 15px;
-    width: 600px;
+    width: 500px;
 }
 
 .member-container,
@@ -52,4 +55,43 @@
     padding: 15px;
     width: 250px;
     margin-bottom: 15px;
+}
+
+.button {
+    font-size: 12px;
+    padding: 5px 10px;
+    height: 25px;
+    min-width: 60px;
+    border-radius: 2px;
+    background-color: darkgoldenrod;
+    border: 1px solid black;
+    margin-bottom: 2px;
+    margin-right: 2px;
+}
+
+.button-mainPage{
+    font-size: 14px;
+    padding: 5px 10px;
+    height: 25px;
+    min-width: 60px;
+    border-radius: 2px;
+    background-color: gray;
+    border: 1px solid rgb(138, 136, 136);
+    margin-bottom: 20px;
+    margin-right: 2px;
+}
+
+.button-edit-user,
+.button-edit-member,
+.button-edit-movie{
+    font-size: 12px;
+    padding: 5px 10px;
+    height: 25px;
+    min-width: 60px;
+    border-radius: 2px;
+    background-color: rgb(146, 145, 145);
+    border: 1px solid rgb(138, 136, 136);
+    margin-bottom: 20px;
+    margin-right: 2px;
+
 }

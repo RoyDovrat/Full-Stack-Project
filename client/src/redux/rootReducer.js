@@ -30,8 +30,6 @@ const usersReducer = (state = initialState, action) => {
             };
 
         case 'UPDATE_USER':
-            console.log("payload", action.payload);
-            console.log("currUser", state.currUser);
             return {
                 ...state,
                 users: state.users.map((user) =>

@@ -55,11 +55,11 @@ function LoginPage() {
         <>
             <h1>Movies Subscriptions Web Site</h1>
             <h3>Log in Page</h3>
-            <label>User name:</label>
+            <label className="login-label">User name:</label>
             <input type="email" placeholder="User Name" onChange={(e) => setUserName(e.target.value)} required/><br /><br />
-            <label>Password:</label>
+            <label className="login-label">Password:</label>
             <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} required/><br /><br />
-            <button onClick={handleLogin}>Login</button> <br />
+            <button className="button" onClick={handleLogin}>Login</button> <br />
 
             New User?: <Link to='/create-account'>Create Account</Link> <br />
             {error && <p style={{ color: 'red' }}>{error}</p>}

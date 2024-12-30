@@ -95,8 +95,8 @@ function Movie({ movie }) {
                     </div>
                     <br />
 
-                    {currUser?.permissions?.includes(CREATE_MOVIE_PERMISSION) && <button onClick={() => setIsEditVisible(true)}>Edit</button>}
-                    {currUser?.permissions?.includes(DELETE_MOVIE_PERMISSION) && <button onClick={deleteMovie}>Delete</button>}
+                    {currUser?.permissions?.includes(CREATE_MOVIE_PERMISSION) && <button className="button-edit-movie" onClick={() => setIsEditVisible(true)}>Edit</button>}
+                    {currUser?.permissions?.includes(DELETE_MOVIE_PERMISSION) && <button className="button-edit-movie" onClick={deleteMovie}>Delete</button>}
                 </div>)
             }
         </>

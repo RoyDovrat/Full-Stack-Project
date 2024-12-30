@@ -11,8 +11,8 @@ function UsersManagement() {
 
     <div className='usersManagement-container'>
       <h3>Users</h3>
-      {currUser?.isAdmin && (<button onClick={() => navigate('/main/users-management/all-users')}>All Users</button>)}
-      {currUser?.isAdmin && (<button onClick={() => navigate('/main/users-management/add-user')}>Add User</button>)} <br /><br />
+      {currUser?.isAdmin && (<button className="button" onClick={() => navigate('/main/users-management/all-users')}>All Users</button>)}
+      {currUser?.isAdmin && (<button className="button" onClick={() => navigate('/main/users-management/add-user')}>Add User</button>)} <br /><br />
       <Outlet />
     </div>
 

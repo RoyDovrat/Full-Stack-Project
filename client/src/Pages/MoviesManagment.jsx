@@ -8,8 +8,8 @@ function Movies() {
 
       <div className='moviesManagement-container'>
         <h3>Movies</h3>
-        <button onClick={() => navigate('/main/movies-management/all-movies')}>All Movies</button>
-        <button onClick={() => navigate('/main/movies-management/add-movie')}>Add Movie</button> <br /> <br />
+        <button className="button" onClick={() => navigate('/main/movies-management/all-movies')}>All Movies</button>
+        <button className="button" onClick={() => navigate('/main/movies-management/add-movie')}>Add Movie</button> <br /> <br />
         <Outlet />
       </div>
     </>

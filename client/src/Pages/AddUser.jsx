@@ -138,8 +138,8 @@ function AddUser() {
           ))}
         </ul>
         <br /> <br />
-        <button onClick={addUser}>Save</button>
-        <button onClick={() => navigate('/main/users-management')}>Cancel</button>
+        <button className="button-edit-user" onClick={addUser}>Save</button>
+        <button className="button-edit-user" onClick={() => navigate('/main/users-management')}>Cancel</button>
       </div>
     </>
   );
