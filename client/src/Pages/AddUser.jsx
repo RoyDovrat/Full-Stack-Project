@@ -16,6 +16,8 @@ const PERMISSIONS_LIST = [
 ];
 const SUBSCRIPTIONS_PERMISSIONS = ["Create Subscriptions", "Update Subscriptions", "Delete Subscriptions"];
 const MOVIES_PERMISSIONS = ["Create Movies", "Update Movies", "Delete Movies"];
+const VIEW_SUBSCRIPTIONS_PERMISSIONS = "View Subscriptions";
+const VIEW_MOVIES_PERMISSIONS = "View Movies";
 
 function AddUser() {
   const [newUser, setNewUser] = useState({
@@ -29,67 +31,77 @@ function AddUser() {
   const navigate = useNavigate();
 
   const handlePermissionChange = (permission, isChecked) => {
-    // Ensure permissions is initialized as an array if not already present
     const updatedPermissions = newUser.permissions ? [...newUser.permissions] : [];
 
     if (isChecked) {
-      // Add the permission if not already included
       if (!updatedPermissions.includes(permission)) {
         updatedPermissions.push(permission);
       }
 
-      // Automatically add "View Subscriptions" if a subscription-related permission is added
+      // add "View Subscriptions" if a subscription-related permission is added
       if (SUBSCRIPTIONS_PERMISSIONS.includes(permission) && !updatedPermissions.includes("View Subscriptions")) {
         updatedPermissions.push("View Subscriptions");
       }
 
-      // Automatically add "View Movies" if a movie-related permission is added
+      // add "View Movies" if a movie-related permission is added
       if (MOVIES_PERMISSIONS.includes(permission) && !updatedPermissions.includes("View Movies")) {
         updatedPermissions.push("View Movies");
       }
     } else {
-      // Remove the permission
-      const filteredPermissions = updatedPermissions.filter((perm) => perm !== permission);
+      // remove the permission
+      let filteredPermissions = updatedPermissions.filter((perm) => perm !== permission);
 
-      // Check if we need to remove "View Subscriptions"
-      if (
-        SUBSCRIPTIONS_PERMISSIONS.includes(permission) &&
-        !filteredPermissions.some((perm) => SUBSCRIPTIONS_PERMISSIONS.includes(perm))
-      ) {
-        updatedPermissions.splice(updatedPermissions.indexOf("View Subscriptions"), 1);
+      if (permission === VIEW_SUBSCRIPTIONS_PERMISSIONS) {
+        filteredPermissions = filteredPermissions.filter((perm) => !SUBSCRIPTIONS_PERMISSIONS.includes(perm));
       }
 
-      // Check if we need to remove "View Movies"
-      if (
-        MOVIES_PERMISSIONS.includes(permission) &&
-        !filteredPermissions.some((perm) => MOVIES_PERMISSIONS.includes(perm))
-      ) {
-        updatedPermissions.splice(updatedPermissions.indexOf("View Movies"), 1);
+      if (permission === VIEW_MOVIES_PERMISSIONS) {
+        filteredPermissions = filteredPermissions.filter((perm) => !MOVIES_PERMISSIONS.includes(perm));
       }
 
-      // Final updatedPermissions assignment
       updatedPermissions.length = 0;
       updatedPermissions.push(...filteredPermissions);
     }
-    console.log("Updated Permissions:", updatedPermissions);
     setNewUser({ ...newUser, permissions: updatedPermissions });
   };
 
   const generateRandomPassword = () => {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const passwordLength = 16; // Length of the password
+    const passwordLength = 16;
     let password = '';
 
     for (let i = 0; i < passwordLength; i++) {
-      const randomIndex = Math.floor(Math.random() * chars.length); // Generate a random index
-      password += chars[randomIndex]; // Add the character at the random index to the password
+      const randomIndex = Math.floor(Math.random() * chars.length);
+      password += chars[randomIndex];
     }
-    console.log('password func', password)
     return password;
   };
 
+  const checkEmailValidation = () => {
+    if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(newUser.userName)) {
+      alert('Username must be a valid email address.');
+      return false;
+    }
+    return true;
+  }
+
+  const checkSessionTimeoutValidation = () => {
+    if (newUser.sessionTimeOut < 1) {
+      alert('Session Timeout must be at least 1 minute.');
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   const addUser = async () => {
+    if (!checkEmailValidation()) {
+      return;
+    }
+    if (!checkSessionTimeoutValidation()) {
+      return;
+    }
+
     try {
       const token = sessionStorage.getItem('token');
       const config = { headers: { 'x-access-token': token } };
@@ -97,6 +109,9 @@ function AddUser() {
       const newUserWithPassword = { ...newUser, password };
       const { data } = await axios.post(USERS_URL, newUserWithPassword, config);
       dispatch({ type: 'ADD_USER', payload: data });
+      console.log(`User added successfully. ID: ${data._id}, Name: ${data.userName}`);
+      alert(`User "${data.userName}" added successfully.`);
+      navigate('/main/users-management/all-users')
     } catch (error) {
       console.error('Error adding user:', error.response?.data || error.message);
     }

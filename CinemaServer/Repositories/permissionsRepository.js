@@ -30,7 +30,7 @@ const updateUserPermissions = async (userId, updatedPermissions) => {
   const deletePermissions = async (userId) => {
     const data = await jf.readFile(FILE);
   
-    const updatedPermissions = data.premissions.filter(permission => permission.id !== userId);
+    const updatedPermissions = data.premissions.filter(permission => permission.id.toString() !== userId.toString());
     if (updatedPermissions.length === data.premissions.length) {
       throw new Error(`Permission with ID ${userId} not found.`);
     }

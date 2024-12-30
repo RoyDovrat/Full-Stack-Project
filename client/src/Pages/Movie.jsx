@@ -34,9 +34,9 @@ function Movie({ movie }) {
     const deleteMovie = async () => {
         try {
             const { data } = await axios.delete(`${MOVIES_URL}/${movie._id}`);
+            dispatch({ type: 'DELETE_MOVIE', payload: movie._id });
             console.log(`Movie deleted successfully. ID: ${data._id}, Name: ${data.name}`);
             alert(`Movie "${data.name}" deleted successfully.`);
-            dispatch({ type: 'DELETE_MOVIE', payload: movie._id });
         } catch (error) {
             console.error('Error deleting movie:', error.response?.data || error.message);
         }

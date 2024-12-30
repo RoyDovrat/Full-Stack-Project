@@ -30,7 +30,7 @@ const updateUser = async (userId, updatedUser) => {
 const deleteUser = async (userId) => {
   const data = await jf.readFile(FILE);
 
-  const updatedUsers = data.users.filter(user => user.id !== userId);
+  const updatedUsers = data.users.filter(user => user.id.toString() !== userId.toString());
   if (updatedUsers.length === data.users.length) {
     throw new Error(`User with ID ${userId} not found.`);
   }

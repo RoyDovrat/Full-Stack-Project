@@ -13,8 +13,10 @@ function User({ user }) {
         try {
             const token = sessionStorage.getItem('token');
             const config = { headers: { 'x-access-token': token } };
-            await axios.delete(`${USERS_URL}/${user._id}`, config);
+            const {data} = await axios.delete(`${USERS_URL}/${user._id}`, config);
             dispatch({ type: 'DELETE_USER', payload: user._id });
+            console.log(`User deleted successfully. ID: ${user._id}, Name: ${data.userName}`);
+            alert(`User "${data.userName}" deleted successfully.`);
         } catch (error) {
             console.error('Error deleting user:', error.response?.data || error.message);
         }
