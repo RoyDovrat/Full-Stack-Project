@@ -24,7 +24,6 @@ function MainPage() {
       try {
         const { data } = await axios.get(MEMBERS_URL);
         dispatch({ type: 'INITIALIZE_MEMBERS', payload: data });
-        console.log('members', data)
       } catch (error) {
         console.error('Error fetching members:', error.response?.data || error.message);
       }

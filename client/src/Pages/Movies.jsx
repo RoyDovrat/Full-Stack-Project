@@ -11,6 +11,9 @@ function Movies() {
   const [filteredMovies, setFilteredMovies] = useState([...movies]);
   const currUser = useSelector((state) => state.currUser);
 
+  console.log('curr user', currUser)
+  console.log(currUser?.permissions?.includes(VIEW_MOVIE_PERMISSION))
+
   useEffect(() => {
     setFilteredMovies(movies); 
   }, [movies]);

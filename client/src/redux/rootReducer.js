@@ -30,13 +30,19 @@ const usersReducer = (state = initialState, action) => {
             };
 
         case 'UPDATE_USER':
+            console.log("payload", action.payload);
+            console.log("currUser", state.currUser);
             return {
                 ...state,
                 users: state.users.map((user) =>
                     user._id === action.payload._id ? action.payload : user
                 ),
-                currUser: state.currUser && state.currUser.id === action.payload.id
-                    ? action.payload
+                currUser: (state.currUser && state.currUser.id === action.payload._id)
+                    ? {
+                        ...state.currUser,
+                        ...action.payload,
+                        id: action.payload._id
+                    }
                     : state.currUser,
             };
 
@@ -107,18 +113,15 @@ const usersReducer = (state = initialState, action) => {
                         ...member,
                         moviesWatched: [
                             ...member.moviesWatched,
-                            ...action.payload.movies, 
+                            ...action.payload.movies,
                         ],
                     }
                     : member
-            ); 
+            );
             return {
                 ...state,
                 members: updatedMembers,
             };
-
-
-
 
         default:
             return state;

@@ -61,7 +61,6 @@ function EditUser({ user, setIsEditVisible }) {
         }
       }
     }
-    console.log("Updated Permissions:", updatedPermissions);
     setUpdatedUser({ ...updatedUser, permissions: updatedPermissions });
   };
 
