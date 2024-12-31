@@ -15,6 +15,8 @@ const PERMISSIONS_LIST = [
 ];
 const SUBSCRIPTIONS_PERMISSIONS = ["Create Subscriptions", "Update Subscriptions", "Delete Subscriptions"];
 const MOVIES_PERMISSIONS = ["Create Movies", "Update Movies", "Delete Movies"];
+const VIEW_SUBSCRIPTIONS_PERMISSIONS = "View Subscriptions";
+const VIEW_MOVIES_PERMISSIONS = "View Movies";
 
 function EditUser({ user, setIsEditVisible }) {
   const [updatedUser, setUpdatedUser] = useState({ ...user });
@@ -24,42 +26,34 @@ function EditUser({ user, setIsEditVisible }) {
     let updatedPermissions = [...updatedUser.permissions];
 
     if (isChecked) {
-      // Add the permission if not already included
       if (!updatedPermissions.includes(permission)) {
         updatedPermissions.push(permission);
       }
 
-      // Automatically check "View Subscriptions" if any subscription-related permission is added
       if (SUBSCRIPTIONS_PERMISSIONS.includes(permission)) {
         if (!updatedPermissions.includes("View Subscriptions")) {
           updatedPermissions.push("View Subscriptions");
         }
       }
 
-      // Automatically check "View Movies" if any movie-related permission is added
       if (MOVIES_PERMISSIONS.includes(permission)) {
         if (!updatedPermissions.includes("View Movies")) {
           updatedPermissions.push("View Movies");
         }
       }
     } else {
-      updatedPermissions = updatedPermissions.filter((perm) => perm !== permission);
+      let filteredPermissions = updatedPermissions.filter((perm) => perm !== permission);
 
-      // Remove "View Subscriptions" if no subscription related permissions remain
-      if (SUBSCRIPTIONS_PERMISSIONS.includes(permission)) {
-        const hasOtherSubscriptions = updatedPermissions.some((perm) => SUBSCRIPTIONS_PERMISSIONS.includes(perm));
-        if (!hasOtherSubscriptions) {
-          updatedPermissions = updatedPermissions.filter((perm) => perm !== "View Subscriptions");
-        }
+      if (permission === VIEW_SUBSCRIPTIONS_PERMISSIONS) {
+        filteredPermissions = filteredPermissions.filter((perm) => !SUBSCRIPTIONS_PERMISSIONS.includes(perm));
       }
 
-      // Remove "View Movies" if no movie related permissions remain
-      if (MOVIES_PERMISSIONS.includes(permission)) {
-        const hasOtherMovies = updatedPermissions.some((perm) => MOVIES_PERMISSIONS.includes(perm));
-        if (!hasOtherMovies) {
-          updatedPermissions = updatedPermissions.filter((perm) => perm !== "View Movies");
-        }
+      if (permission === VIEW_MOVIES_PERMISSIONS) {
+        filteredPermissions = filteredPermissions.filter((perm) => !MOVIES_PERMISSIONS.includes(perm));
       }
+
+      updatedPermissions.length = 0;
+      updatedPermissions.push(...filteredPermissions);
     }
     setUpdatedUser({ ...updatedUser, permissions: updatedPermissions });
   };
@@ -75,7 +69,6 @@ function EditUser({ user, setIsEditVisible }) {
       console.error('Error updating user:', error.response?.data || error.message);
     }
   };
-
 
   return (
     <>

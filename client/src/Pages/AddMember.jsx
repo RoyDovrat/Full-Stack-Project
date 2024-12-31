@@ -7,6 +7,7 @@ const MEMBERS_URL = 'http://localhost:8000/members';
 const CREATE_SUBSCRIPTIONS_PERMISSION = "Create Subscriptions";
 
 function AddMember() {
+  const [message, setMessage] = useState('');
   const [newMember, setNewMember] = useState({
     name: '',
     email: '',
@@ -17,7 +18,17 @@ function AddMember() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const checkValidation = () => {
+    if (!newMember.name || !newMember.email || !newMember.city) {
+      setMessage('Please enter all the required details.');
+      return false;
+    }
+    return true;
+  }
+
   const addMember = async () => {
+    if (!checkValidation()) return;
+
     try {
       const { data } = await axios.post(MEMBERS_URL, newMember);
       dispatch({ type: 'ADD_MEMBER', payload: data });
@@ -44,10 +55,11 @@ function AddMember() {
           <span className="movie-info-label">City:</span>
           <input type="text" onChange={(e) => { setNewMember({ ...newMember, city: e.target.value }); }} />
           <br /> <br />
-         
+
           <button className="button-edit-member" onClick={addMember}>Save</button>
           <button className="button-edit-member" onClick={() => navigate('/main/subscriptions/all-members')}>Cancel</button>
         </div>}
+      {message && <p style={{ color: 'red' }}>{message}</p>}
     </>
   );
 }

@@ -5,11 +5,13 @@ import axios from 'axios';
 const MOVIES_URL = 'http://localhost:8000/movies';
 
 function EditMovie({ movie, setIsEditVisible }) {
+    const [message, setMessage] = useState('');
+
     const formatDate = (dateString) => {
         const date = new Date(dateString);
         const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Ensure 2-digit month
-        const day = String(date.getDate()).padStart(2, '0'); // Ensure 2-digit day
+        const month = String(date.getMonth() + 1).padStart(2, '0'); 
+        const day = String(date.getDate()).padStart(2, '0'); 
         return `${year}-${month}-${day}`;
     };
 
@@ -20,7 +22,16 @@ function EditMovie({ movie, setIsEditVisible }) {
     });
     const dispatch = useDispatch();
 
+    const checkValidation = () => {
+        if (!updateMovie.name || !updateMovie.genres || !updateMovie.premiered) {
+          setMessage('Please enter all the required details.');
+          return false;
+        }
+        return true;
+      }
+
     const updateMovie = async () => {
+        if (!checkValidation()) return;
         try {
             const updatedMovieWithArrayGenres = {
                 ...updatedMovie,
@@ -79,6 +90,7 @@ function EditMovie({ movie, setIsEditVisible }) {
                 <button className="button-edit-movie" onClick={updateMovie}>Update</button>
                 <button className="button-edit-movie" onClick={() => setIsEditVisible(false)}>Cancel</button>
             </div>
+            {message && <p style={{ color: 'red' }}>{message}</p>}
         </>
     );
 }

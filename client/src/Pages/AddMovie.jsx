@@ -7,6 +7,7 @@ const MOVIES_URL = 'http://localhost:8000/movies';
 const CREATE_MOVIE_PERMISSION = "Create Movies";
 
 function AddMovie() {
+  const [message, setMessage] = useState('');
   const [newMovie, setNewMovie] = useState({
     name: '',
     genres: '',
@@ -17,7 +18,17 @@ function AddMovie() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const checkValidation = () => {
+    if (!newMovie.name || !newMovie.genres || !newMovie.premiered) {
+      setMessage('Please enter all the required details.');
+      return false;
+    }
+    return true;
+  }
+
   const addMovie = async () => {
+    if (!checkValidation()) return;
+
     try {
       const { data } = await axios.post(MOVIES_URL, newMovie);
       dispatch({ type: 'ADD_MOVIE', payload: data });
@@ -33,7 +44,7 @@ function AddMovie() {
   return (
     <>
       <h2>Add New Movie: </h2>
-     {currUser?.permissions?.includes(CREATE_MOVIE_PERMISSION) && <div className="movie-container">
+      {currUser?.permissions?.includes(CREATE_MOVIE_PERMISSION) && <div className="movie-container">
         <span className="movie-info-label">Name:</span>
         <input type="text" onChange={(e) => { setNewMovie({ ...newMovie, name: e.target.value }); }} />
         <br /> <br />
@@ -49,6 +60,7 @@ function AddMovie() {
         <button className="button-edit-movie" onClick={addMovie}>Save</button>
         <button className="button-edit-movie" onClick={() => navigate('/main/movies-management/all-movies')}>Cancel</button>
       </div>}
+      {message && <p style={{ color: 'red' }}>{message}</p>}
     </>
   );
 }
