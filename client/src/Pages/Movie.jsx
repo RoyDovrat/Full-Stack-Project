@@ -20,10 +20,12 @@ function Movie({ movie }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const dateStr = movie.premiered;
-        const year = dateStr.split('-')[0];
-        setPremieredYear(year)
-
+        if (movie.premiered) {
+            const year = movie.premiered.split('-')[0];
+            setPremieredYear(year);
+        } else {
+            setPremieredYear('Unknown'); 
+        }
         const watchedBy = members.filter((member) =>
             member.moviesWatched.some((watched) => watched.movieId === movie._id)
         );

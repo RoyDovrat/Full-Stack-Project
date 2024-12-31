@@ -110,6 +110,26 @@ const updateUser = async (id, obj) => {
     };
 };
 
+const createUser = async (id, obj) => {
+    const user = await usersDBrepository.getUserById(id);
+
+    if (!user) {
+        throw new Error("User not found.");
+    }
+
+    if (!obj.password) {
+        throw new Error('Password is required.');
+    }
+
+    await usersDBrepository.updateUser(id, { password: obj.password });
+
+    return {
+        _id: id,
+        userName: user.userName,
+        password: obj.password,
+    };
+};
+
 
 const deleteUser = async (id) => {
 
@@ -134,5 +154,6 @@ module.exports = {
     getUserByUserName,
     addUser,
     updateUser,
+    createUser,
     deleteUser,
 }

@@ -35,7 +35,7 @@ function User({ user }) {
                         <span className="user-info-label">Session Time Out (Minutes):</span>
                         {user.sessionTimeOut} <br />
                         <span className="user-info-label">Created Date:</span>
-                        {user.createdDate} <br />
+                        {user.createdDate ? new Date(user.createdDate).toISOString().split('T')[0] : 'N/A'} <br />
                         <span className="user-info-label">Permissions:</span>
                         <ul>
                             {user.permissions.map((permission, index) => (

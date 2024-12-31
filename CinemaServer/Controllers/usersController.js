@@ -35,10 +35,10 @@ router.post('/createAccount', async (req, res) => {
 
     const user = await usersService.getUserByUserName(userName);
     if (!user) {
-      return res.status(404).json({ message: 'User does not exist' });
+      return res.status(404).json({ message: 'User does not exist.  Please contact the system administrator.' });
     }
 
-    await usersService.updateUser(user._id, { password });
+    await usersService.createUser(user._id, { password });
     res.status(201).json({ message: 'Account created successfully' });
   } catch (error) {
     res.status(500).json(error.message);
