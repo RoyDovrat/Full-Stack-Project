@@ -40,10 +40,9 @@ function Member({ member: propMember }) {
                 <EditMember member={member} setIsEditVisible={setIsEditVisible} />
             ) : (
                 <div className="member-container">
-                    <span style={{ fontWeight: 'bold' }}>{`${member.name}`}</span>
-                    <br />
+                    <span className='member-name'>{`${member.name}`}</span> <br /><br />
                     <span className="member-info-label">Email:</span>
-                    {member.email} <br />
+                    {member.email} <br /><br />
                     <span className="member-info-label">City:</span>
                     {member.city} <br /> <br />
 
