@@ -45,13 +45,13 @@ function MainPage() {
 
   return (
     <div className='main-layout'>
-      <header>
+      <header className='main-header'>
         <p>Welcome, {currUser?.fullName || 'Guest'}</p>
         <div className='webSite-header'>
-          <img src={icon} alt="icon" className="icon" />
-          <h1>Movies Subscriptions</h1>
+        <img src={icon} alt="icon" className="icon" />
+        <h1>Movies Subscriptions</h1>
         </div>
-
+        
       </header>
 
       <nav className='navigate'>

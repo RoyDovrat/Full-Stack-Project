@@ -1,0 +1,102 @@
+.moviesManagement-container {
+    justify-content: right;
+    border: 2px solid gray;
+    border-radius: 20px;
+    padding: 15px;
+    width: 60%;
+
+    main {
+
+        .moviesManagement-button {
+            margin-block: 15px;
+            margin-right: 10px;
+            padding: 4px 15px;
+            background-color: #0e64ad;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    }
+
+}
+
+.movies-container {
+    padding: 10px;
+    margin-bottom: 15px;
+
+    .movies-header {
+        border: 2px solid gray;
+        border-radius: 20px;
+        padding: 1px 11px;
+        max-width: 78%;
+        margin-bottom: 15px;
+        
+        label {
+            font-weight: bold;
+        }
+        .search-movie-text{
+            border-radius: 5px;
+        }
+
+        .find-button {
+            margin-block: 15px;
+            margin-right: 10px;
+            padding: 2px 15px;
+            background-color: #0e64ad;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+    }
+}
+
+.movie-container {
+    border: 2px solid rgb(85, 84, 84);
+    border-radius: 20px;
+    padding: 15px;
+    width: 400px;
+    margin-bottom: 15px;
+    display: flex; 
+    flex-direction: column; 
+
+    .movie-name {
+        color: #fef0ba;
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 3px;
+    }
+
+    .movie-info-label {
+        text-decoration: underline;
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .subscriptions-watched-container {
+        margin-top: 10px;
+    }
+
+    .movie-img {
+        align-self: flex-end; 
+        margin-top: 10px;
+        margin-top: -100px;
+        border-radius: 5px;
+    }
+
+    .button-edit-movie{
+        margin-bottom: 2px;
+        border-radius: 5px;
+    }
+
+    .button-edit-movie:hover{
+        background-color: gray;
+    }
+    
+}

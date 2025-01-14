@@ -9,13 +9,12 @@
       max-width: 1060px; 
     }
   
-    header {
+   .main-header {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center; 
-      gap: 5px;
-      margin-inline-end: 215px;
+      gap: 0px;
   
       p {
         margin: 0; 

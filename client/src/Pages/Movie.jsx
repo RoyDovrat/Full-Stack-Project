@@ -53,8 +53,8 @@ function Movie({ movie }) {
             {isEditVisible ?
                 (<EditMovie movie={movie} setIsEditVisible={setIsEditVisible} />) :
                 (<div className="movie-container">
-                    <span style={{ fontWeight: 'bold' }}>{`${movie.name}, ${premieredYear}`}</span>
-                    <br />
+                    <span className='movie-name'>{`${movie.name}, ${premieredYear}`}</span>
+                    <br /> <br />
                     <span className="movie-info-label">Genres:</span>
                     <ul>
                         {movie.genres.map((genre, index) => (
@@ -62,7 +62,7 @@ function Movie({ movie }) {
                         ))}
                     </ul>
 
-                    <img
+                    <img className='movie-img'
                         src={movie.image}
                         style={{ width: '100px', height: 'auto' }}
                     />

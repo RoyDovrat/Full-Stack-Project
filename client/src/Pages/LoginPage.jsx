@@ -7,7 +7,7 @@ import '../Style/Login.scss'
 import icon from '../images/icon.png'
 import movielogin from '../images/movielogin.jpg'
 //#f25c29 orange
-//blue #0e64ad
+//blue #0e64ad, #24b6e5
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -74,7 +74,7 @@ function LoginPage() {
             <footer>
                 <button className="button" onClick={handleLogin}>Login</button> <br />
                 New User?: <Link to='/create-account'>Create Account</Link> 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                {error && <p style={{ color: '#972c09', fontWeight: 'bold' }}>{error}</p>}
             </footer>
 
         </div>
