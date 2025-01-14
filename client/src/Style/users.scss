@@ -1,0 +1,42 @@
+.usersManagement-container {
+    justify-content: right;
+    border: 2px solid gray;
+    border-radius: 20px;
+    padding: 15px;
+    width: 60%;
+
+        .userssManagement-button {
+            margin-block: 15px;
+            margin-right: 10px;
+            padding: 4px 15px;
+            background-color: #0e64ad;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+}
+
+
+.user-container{
+    border: 2px solid rgb(85, 84, 84);
+    border-radius: 20px;
+    padding: 15px;
+    width: 400px;
+    margin-bottom: 15px;
+
+    .user-info-label {
+        text-decoration: underline;
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+
+    .button-edit-user{
+        margin-bottom: 2px;
+        border-radius: 5px;
+    }
+
+    .button-edit-user:hover{
+        background-color: gray;
+    }
+    
+}

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import '../Style.css';
 import User from './User';
+import '../Style/users.scss'
+
 
 const USERS_URL = 'http://localhost:3000/users';
 

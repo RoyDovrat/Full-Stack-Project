@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import EditUser from './EditUser';
+import '../Style/users.scss'
+
 
 const USERS_URL = 'http://localhost:3000/users';
 
@@ -29,13 +31,13 @@ function User({ user }) {
                 (
                     <div className="user-container">
                         <span className="user-info-label">Name:</span>
-                        {`${user.firstName} ${user.lastName}`} <br />
+                        {`${user.firstName} ${user.lastName}`} <br /> <br />
                         <span className="user-info-label">Username:</span>
-                        {user.userName} <br />
+                        {user.userName} <br /> <br />
                         <span className="user-info-label">Session Time Out (Minutes):</span>
-                        {user.sessionTimeOut} <br />
-                        <span className="user-info-label">Created Date:</span>
-                        {user.createdDate ? new Date(user.createdDate).toISOString().split('T')[0] : 'N/A'} <br />
+                        {user.sessionTimeOut} <br /><br />
+                        <span className="user-info-label">Created Date:</span> 
+                        {user.createdDate ? new Date(user.createdDate).toISOString().split('T')[0] : 'N/A'} <br /> <br />
                         <span className="user-info-label">Permissions:</span>
                         <ul>
                             {user.permissions.map((permission, index) => (

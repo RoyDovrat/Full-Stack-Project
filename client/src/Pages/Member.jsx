@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import EditMember from './EditMember';
 import SubscribeToNewMovie from './SubscribeToNewMovie';
+import '../Style/Subscriptions.scss'
 
 const MEMBERS_URL = 'http://localhost:8000/members';
 const CREATE_SUBSCRIPTIONS_PERMISSION = "Create Subscriptions";
