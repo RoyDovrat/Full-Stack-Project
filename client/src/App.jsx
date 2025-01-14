@@ -12,6 +12,7 @@ import AddMovie from './Pages/AddMovie';
 import Members from './Pages/Members';
 import AddMember from './Pages/AddMember';
 import MovieDetails from './Pages/MovieDetails';
+import './App.scss'
 
 
 function App() {

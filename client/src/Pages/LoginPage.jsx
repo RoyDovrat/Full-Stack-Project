@@ -3,6 +3,11 @@ import { jwtDecode } from "jwt-decode";
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../Style/Login.scss'
+import icon from '../images/icon.png'
+import movielogin from '../images/movielogin.jpg'
+//#f25c29 orange
+//blue #0e64ad
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -12,7 +17,7 @@ function LoginPage() {
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
 
     const handleLogin = async () => {
         if (!userName || !password) {
@@ -30,7 +35,7 @@ function LoginPage() {
                 sessionStorage.setItem('fullName', decoded.fullName);
                 sessionStorage.setItem('isAdmin', decoded.isAdmin);
 
-                const data ={
+                const data = {
                     id: decoded.userId,
                     fullName: decoded.fullName,
                     isAdmin: decoded.isAdmin,
@@ -52,18 +57,28 @@ function LoginPage() {
     };
 
     return (
-        <>
-            <h1>Movies Subscriptions Web Site</h1>
-            <h3>Log in Page</h3>
-            <label className="login-label">User name:</label>
-            <input type="email" placeholder="User Name" onChange={(e) => setUserName(e.target.value)} required/><br /><br />
-            <label className="login-label">Password:</label>
-            <input type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} required/><br /><br />
-            <button className="button" onClick={handleLogin}>Login</button> <br />
+        <div className='login-layout'>
 
-            New User?: <Link to='/create-account'>Create Account</Link> <br />
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-        </>
+            <header>
+            <img src={icon} alt="icon" className="icon" />
+                <div className="header-content">
+                    <h1>Movies Subscriptions</h1>
+                </div>
+                
+            </header>
+
+            <main>
+                <input className='text-input' type="email" placeholder="Type Email" onChange={(e) => setUserName(e.target.value)} required />
+                <input className='text-input' type="password" placeholder="Type Password" onChange={(e) => setPassword(e.target.value)} required />
+            </main>
+
+            <footer>
+                <button className="button" onClick={handleLogin}>Login</button> <br />
+                New User?: <Link to='/create-account'>Create Account</Link> 
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+            </footer>
+
+        </div>
     );
 }
 

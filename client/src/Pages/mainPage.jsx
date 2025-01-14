@@ -2,6 +2,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
+import '../Style/main.scss'
 
 const MOVIES_URL = 'http://localhost:8000/movies';
 const MEMBERS_URL = 'http://localhost:8000/members//WithMoviesWatched';
@@ -42,18 +43,24 @@ function MainPage() {
 
 
   return (
-    <>
-      <p>Welcome, {currUser?.fullName || 'Guest'}</p>
+    <div className='main-layout'>
+      <header>
+        <p>Welcome, {currUser?.fullName || 'Guest'}</p>
 
-      <h1>Movies Subscriptions Web Site</h1>
-      <button className="button-mainPage" onClick={() => navigate('/main/movies-management')}>Movies</button>
-      <button className="button-mainPage" onClick={() => navigate('/main/subscriptions')}>Subscriptions</button>
-      {currUser?.isAdmin && (
-        <button className="button-mainPage" onClick={() => navigate('/main/users-management')}>Users Management</button>
-      )}
-      <button className="button-mainPage" onClick={handleLogout}>Log Out</button> <br /> <br />
+        <h1>Movies Subscriptions Web Site</h1>
+      </header>
+
+      <nav className='navigate'>
+        <button onClick={() => navigate('/main/movies-management')}>Movies</button>
+        <button onClick={() => navigate('/main/subscriptions')}>Subscriptions</button>
+        {currUser?.isAdmin && (
+          <button onClick={() => navigate('/main/users-management')}>Users Management</button>
+        )}
+        <button onClick={handleLogout}>Log Out</button> <br /> <br />
+      </nav>
+
       <Outlet />
-    </>
+    </div>
   );
 }
 
