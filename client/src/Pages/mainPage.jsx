@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
 import '../Style/main.scss'
+import icon from '../images/icon.png'
 
 const MOVIES_URL = 'http://localhost:8000/movies';
 const MEMBERS_URL = 'http://localhost:8000/members//WithMoviesWatched';
@@ -46,8 +47,11 @@ function MainPage() {
     <div className='main-layout'>
       <header>
         <p>Welcome, {currUser?.fullName || 'Guest'}</p>
+        <div className='webSite-header'>
+          <img src={icon} alt="icon" className="icon" />
+          <h1>Movies Subscriptions</h1>
+        </div>
 
-        <h1>Movies Subscriptions Web Site</h1>
       </header>
 
       <nav className='navigate'>

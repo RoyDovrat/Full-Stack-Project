@@ -63,8 +63,7 @@ function LoginPage() {
             <img src={icon} alt="icon" className="icon" />
                 <div className="header-content">
                     <h1>Movies Subscriptions</h1>
-                </div>
-                
+                </div>  
             </header>
 
             <main>

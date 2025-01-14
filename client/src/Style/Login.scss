@@ -16,6 +16,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: row;
         gap: 5px;
 
         img {
@@ -23,6 +24,7 @@
             width: 75px;
             height: auto;
         }
+   
     }
 
     main {
@@ -54,6 +56,11 @@
             padding: 10px 125px;
             border-radius: 5px;
             font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #972c09;
+            color: white;
         }
     }
 
