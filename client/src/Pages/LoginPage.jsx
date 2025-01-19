@@ -2,12 +2,10 @@ import { useState } from 'react';
 import { jwtDecode } from "jwt-decode";
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import ErrorMessage from '../Components/ErrorMessage'
 import axios from 'axios';
 import '../Style/Login.scss'
 import icon from '../images/icon.png'
-import movielogin from '../images/movielogin.jpg'
-//#f25c29 orange
-//blue #0e64ad, #24b6e5
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -19,11 +17,16 @@ function LoginPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const handleLogin = async () => {
+    const isValidInput = () => {
         if (!userName || !password) {
             setError('Please enter both username and password.');
-            return;
+            return false;
         }
+        return true;
+    };
+
+    const handleLogin = async () => {
+        if (!isValidInput()) return;
 
         try {
             const resp = await axios.post(URL, { userName, password });
@@ -72,9 +75,9 @@ function LoginPage() {
             </main>
 
             <footer>
-                <button className="button" onClick={handleLogin}>Login</button> <br />
+                <button onClick={handleLogin}>Login</button> <br />
                 New User?: <Link to='/create-account'>Create Account</Link> 
-                {error && <p style={{ color: '#972c09', fontWeight: 'bold' }}>{error}</p>}
+                <ErrorMessage message={error} />
             </footer>
 
         </div>
