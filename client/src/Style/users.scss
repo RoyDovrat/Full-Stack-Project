@@ -3,7 +3,7 @@
     border: 2px solid gray;
     border-radius: 20px;
     padding: 15px;
-    width: 60%;
+    max-width: 40%;
 
         .userssManagement-button {
             margin-block: 15px;
@@ -16,13 +16,13 @@
         }
 }
 
-
 .user-container{
     border: 2px solid rgb(85, 84, 84);
     border-radius: 20px;
     padding: 15px;
     width: 400px;
     margin-bottom: 15px;
+    max-width: 90%;
 
     .user-info-label {
         text-decoration: underline;
