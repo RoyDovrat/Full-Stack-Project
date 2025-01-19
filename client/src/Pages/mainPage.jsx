@@ -41,20 +41,25 @@ function MainPage() {
     navigate('/');
   };
 
+  const navButtons = [
+    { label: 'Movies', path: '/main/movies-management' },
+    { label: 'Subscriptions', path: '/main/subscriptions' },
+    ...(currUser?.isAdmin ? [{ label: 'Users Management', path: '/main/users-management' }] : []),
+    { label: 'Log Out', action: handleLogout }
+  ];
 
 
   return (
     <div className='main-layout'>
 
       <AppHeadline userName={currUser?.fullName} />
-
+      
       <nav className='navigate'>
-        <button onClick={() => navigate('/main/movies-management')}>Movies</button>
-        <button onClick={() => navigate('/main/subscriptions')}>Subscriptions</button>
-        {currUser?.isAdmin && (
-          <button onClick={() => navigate('/main/users-management')}>Users Management</button>
-        )}
-        <button onClick={handleLogout}>Log Out</button> <br /> <br />
+        {navButtons.map(({ label, path, action }) => (
+          <button key={label} onClick={() => (action ? action() : navigate(path))}>
+            {label}
+          </button>
+        ))}
       </nav>
 
       <Outlet />
