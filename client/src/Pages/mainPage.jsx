@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
 import '../Style/main.scss'
-import icon from '../images/icon.png'
+import AppHeadline from '../Components/AppHeadline';
 
 const MOVIES_URL = 'http://localhost:8000/movies';
 const MEMBERS_URL = 'http://localhost:8000/members//WithMoviesWatched';
@@ -45,14 +45,8 @@ function MainPage() {
 
   return (
     <div className='main-layout'>
-      <header className='main-header'>
-        <p>Welcome, {currUser?.fullName || 'Guest'}</p>
-        <div className='webSite-header'>
-        <img src={icon} alt="icon" className="icon" />
-        <h1>Movies Subscriptions</h1>
-        </div>
-        
-      </header>
+
+      <AppHeadline userName={currUser?.fullName} />
 
       <nav className='navigate'>
         <button onClick={() => navigate('/main/movies-management')}>Movies</button>

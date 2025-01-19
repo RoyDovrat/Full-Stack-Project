@@ -1,0 +1,25 @@
+.main-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    gap: 0px;
+
+    p {
+      margin: 0; 
+      font-weight: bold;
+      margin-inline-end: 60px;
+    }
+
+    .webSite-header {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
+
+      img {
+        width: 75px;
+        height: auto;
+      }
+    }
+  }

@@ -6,6 +6,7 @@ import ErrorMessage from '../Components/ErrorMessage'
 import axios from 'axios';
 import '../Style/Login.scss'
 import icon from '../images/icon.png'
+import AppHeadline from '../Components/AppHeadline';
 
 const URL = 'http://localhost:3000/auth/login';
 
@@ -61,13 +62,8 @@ function LoginPage() {
 
     return (
         <div className='login-layout'>
-
-            <header>
-            <img src={icon} alt="icon" className="icon" />
-                <div className="header-content">
-                    <h1>Movies Subscriptions</h1>
-                </div>  
-            </header>
+            
+            <AppHeadline />
 
             <main>
                 <input className='text-input' type="email" placeholder="Type Email" onChange={(e) => setUserName(e.target.value)} required />

@@ -3,29 +3,14 @@
     max-width: 1060px;
     width: 100%;
 
-
 }
 
 .login-layout {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
-    header {
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: row;
-        gap: 5px;
-
-        img {
-            //width: 100%;
-            width: 75px;
-            height: auto;
-        }
-   
-    }
 
     main {
         display: flex;
