@@ -3,18 +3,25 @@ import '../Style/movies.scss'
 
 function Movies() {
   const navigate = useNavigate();
+  const buttons = [
+    { label: 'All Movies', path: '/main/movies-management/all-movies' },
+    { label: 'Add Movie', path: '/main/movies-management/add-movie' },
+  ];
 
   return (
+    <div className='moviesManagement-container'>
 
-      <div className='moviesManagement-container'>
+      <main>
+        {buttons.map(({ label, path }) => (
+          <button key={path} className="moviesManagement-button" onClick={() => navigate(path)}>
+            {label}
+          </button>
+        ))}
+      </main>
 
-        <main>
-          <button className='moviesManagement-button' onClick={() => navigate('/main/movies-management/all-movies')}>All Movies</button>
-          <button className='moviesManagement-button' onClick={() => navigate('/main/movies-management/add-movie')}>Add Movie</button> 
-        </main>
-        <Outlet />
+      <Outlet />
 
-      </div>
+    </div>
   )
 }
 
